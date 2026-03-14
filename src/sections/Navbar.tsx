@@ -48,8 +48,9 @@ export function Navbar() {
             href="#"
             className="font-mono text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
           >
-            <span className="text-neutral-400 dark:text-neutral-500">~/</span>
-            <span className="terminal-title">{profile.name}</span>
+            <span className="text-accent-500 dark:text-accent-400">{"{"}</span>
+            <span>{profile.name}</span>
+            <span className="text-accent-500 dark:text-accent-400">{"}"}</span>
           </a>
 
           {/* Desktop nav */}
