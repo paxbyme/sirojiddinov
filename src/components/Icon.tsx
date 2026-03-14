@@ -5,6 +5,7 @@ import {
   Github,
   Linkedin,
   Send,
+  Globe,
 } from "lucide-react";
 
 const iconMap: Record<
@@ -17,6 +18,7 @@ const iconMap: Record<
   Github,
   Linkedin,
   Send,
+  Globe,
 };
 
 interface IconProps {

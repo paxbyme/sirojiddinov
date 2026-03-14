@@ -6,7 +6,7 @@ import { Card } from "../components/Card";
 import { Tag } from "../components/Tag";
 import { Button } from "../components/Button";
 import { Reveal } from "../components/Reveal";
-import { profile } from "../data/profile";
+import { useTranslation } from "../i18n/useTranslation";
 import type { Project } from "../types";
 
 function ProjectModal({
@@ -16,6 +16,7 @@ function ProjectModal({
   project: Project;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
@@ -49,67 +50,72 @@ function ProjectModal({
       aria-modal="true"
       aria-label={`Details for ${project.title}`}
     >
-      {/* Backdrop */}
       <div
-        className={`absolute inset-0 bg-slate-900/55 backdrop-blur-md ${
+        className={`absolute inset-0 bg-neutral-900/60 backdrop-blur-md dark:bg-black/70 ${
           isClosing ? "modal-backdrop-exit" : "modal-backdrop-enter"
         }`}
         onClick={() => setIsClosing(true)}
         aria-hidden="true"
       />
 
-      {/* Content */}
       <div
-        className={`glass-surface relative w-full max-w-lg rounded-2xl p-6 shadow-2xl sm:p-8 ${
+        className={`terminal-surface relative w-full max-w-lg overflow-hidden rounded-lg shadow-2xl ${
           isClosing ? "modal-panel-exit" : "modal-panel-enter"
         }`}
       >
-        <button
-          onClick={() => setIsClosing(true)}
-          className="absolute top-4 right-4 rounded-lg p-1.5 text-slate-500 transition-colors hover:bg-white/55 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-slate-200"
-          aria-label="Close dialog"
-        >
-          <X size={20} />
-        </button>
-
-        <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">
+        <div className="terminal-header">
+          <span className="ml-14 font-mono text-xs text-neutral-500 dark:text-neutral-400">
             {project.title}
-          </h3>
-          {project.productionReady && (
-            <Tag variant="accent">Production Ready</Tag>
-          )}
+          </span>
+          <button
+            onClick={() => setIsClosing(true)}
+            className="ml-auto rounded-md p-1 text-neutral-500 transition-colors hover:bg-neutral-200/50 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-200"
+            aria-label="Close dialog"
+          >
+            <X size={16} />
+          </button>
         </div>
 
-        <div className="mb-4 flex flex-wrap gap-1.5">
-          {project.stack.map((tech) => (
-            <Tag key={tech} variant="accent">
-              {tech}
-            </Tag>
-          ))}
-        </div>
+        <div className="p-6 sm:p-8">
+          <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+            <h3 className="font-mono text-xl font-bold text-neutral-900 dark:text-neutral-50">
+              {project.title}
+            </h3>
+            {project.productionReady && (
+              <Tag variant="accent">{t.projectProductionReady}</Tag>
+            )}
+          </div>
 
-        <p className="mb-4 text-xs font-semibold tracking-wide text-accent-800 dark:text-accent-200">
-          {project.status}
-        </p>
+          <div className="mb-4 flex flex-wrap gap-1.5">
+            {project.stack.map((tech) => (
+              <Tag key={tech} variant="accent">
+                {tech}
+              </Tag>
+            ))}
+          </div>
 
-        <p className="mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-          {project.longDescription}
-        </p>
+          <p className="mb-4 font-mono text-xs font-semibold tracking-wide text-accent-700 dark:text-accent-400">
+            {project.status}
+          </p>
 
-        <div className="flex flex-wrap gap-3">
-          {project.liveUrl && (
-            <Button href={project.liveUrl} variant="primary" size="sm">
-              <ExternalLink size={16} />
-              Live Demo
-            </Button>
-          )}
-          {project.githubUrl && (
-            <Button href={project.githubUrl} variant="secondary" size="sm">
-              <Github size={16} />
-              Source Code
-            </Button>
-          )}
+          <p className="mb-6 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+            {project.longDescription}
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            {project.liveUrl && (
+              <Button href={project.liveUrl} variant="primary" size="sm">
+                <ExternalLink size={16} />
+                {t.projectLiveDemo}
+              </Button>
+            )}
+            {project.githubUrl && (
+              <Button href={project.githubUrl} variant="secondary" size="sm">
+                <Github size={16} />
+                {t.projectSourceCode}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -117,14 +123,16 @@ function ProjectModal({
 }
 
 export function Projects() {
+  const { t, profile } = useTranslation();
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
     <section id="projects" className="py-24">
       <Container>
         <SectionTitle
-          title="Projects"
-          subtitle="A selection of things I've built."
+          title={t.projectsTitle}
+          subtitle={t.projectsSubtitle}
+          command={t.projectsCommand}
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -133,26 +141,28 @@ export function Projects() {
               <Card hover>
                 <button
                   onClick={() => setSelected(project)}
-                className="w-full text-left"
-                aria-label={`View details for ${project.title}`}
-              >
-                {/* Gradient placeholder for project image */}
-                <div className="project-preview mb-4 h-36 rounded-xl" />
+                  className="w-full text-left"
+                  aria-label={`View details for ${project.title}`}
+                >
+                  <div className="project-preview mb-4 h-36 rounded-lg" />
 
-                <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-                    {project.title}
-                  </h3>
-                  {project.productionReady && (
-                    <Tag variant="accent">Production Ready</Tag>
-                  )}
-                </div>
-                <p className="mb-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  {project.description}
-                </p>
-                <p className="mb-4 text-xs font-semibold tracking-wide text-accent-800 dark:text-accent-200">
-                  {project.status}
-                </p>
+                  <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+                    <h3 className="font-mono text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                      {project.title}
+                    </h3>
+                    {project.productionReady && (
+                      <span className="inline-flex items-center gap-1 font-mono text-xs font-bold text-green-600 dark:text-green-400">
+                        <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
+                        {t.projectProductionReady}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mb-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    {project.description}
+                  </p>
+                  <p className="mb-4 font-mono text-xs font-medium text-accent-700 dark:text-accent-400">
+                    {project.status}
+                  </p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {project.stack.map((tech) => (
@@ -162,17 +172,17 @@ export function Projects() {
                 </button>
 
                 {(project.liveUrl || project.githubUrl) && (
-                  <div className="mt-4 flex gap-3 border-t border-slate-300/35 pt-4 dark:border-slate-700/45">
+                  <div className="mt-4 flex gap-3 border-t border-accent-500/10 pt-4 dark:border-accent-500/8">
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 transition-colors hover:text-fuchsia-600 dark:text-accent-300 dark:hover:text-fuchsia-300"
+                        className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-accent-700 transition-colors hover:text-accent-500 dark:text-accent-400 dark:hover:text-accent-300"
                         aria-label={`View live demo of ${project.title}`}
                       >
                         <ExternalLink size={14} />
-                        Live
+                        {t.projectLive}
                       </a>
                     )}
                     {project.githubUrl && (
@@ -180,11 +190,11 @@ export function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                        className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                         aria-label={`View source code of ${project.title}`}
                       >
                         <Github size={14} />
-                        Code
+                        {t.projectCode}
                       </a>
                     )}
                   </div>

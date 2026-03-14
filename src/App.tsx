@@ -6,15 +6,14 @@ import { Projects } from "./sections/Projects";
 import { Experience } from "./sections/Experience";
 import { Contact } from "./sections/Contact";
 import { Footer } from "./sections/Footer";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
 export default function App() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
       <div className="app-backdrop" aria-hidden="true">
         <div className="app-grid" />
-        <div className="orb orb-cyan" />
-        <div className="orb orb-magenta" />
-        <div className="orb orb-blue" />
+        <div className="scanline" />
       </div>
 
       <div className="relative z-10">
@@ -29,6 +28,8 @@ export default function App() {
         </main>
         <Footer />
       </div>
+
+      <LanguageSwitcher />
     </div>
   );
 }

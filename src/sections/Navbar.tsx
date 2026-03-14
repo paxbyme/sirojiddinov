@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Container } from "../components/Container";
 import { ThemeToggle } from "../components/ThemeToggle";
-import { profile } from "../data/profile";
-
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
-];
+import { useTranslation } from "../i18n/useTranslation";
 
 export function Navbar() {
+  const { t, profile } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = [
+    { label: t.navAbout, href: "#about" },
+    { label: t.navSkills, href: "#skills" },
+    { label: t.navProjects, href: "#projects" },
+    { label: t.navExperience, href: "#experience" },
+    { label: t.navContact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -37,7 +38,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-accent-200/40 bg-white/58 shadow-[0_10px_36px_rgb(15_23_42_/_16%)] backdrop-blur-xl dark:border-accent-400/20 dark:bg-slate-950/58 dark:shadow-[0_12px_34px_rgb(2_6_23_/_55%)]"
+          ? "border-b border-accent-500/20 bg-white/80 shadow-[0_4px_24px_rgb(16_185_129_/_8%)] backdrop-blur-xl dark:border-accent-500/15 dark:bg-neutral-950/80 dark:shadow-[0_4px_24px_rgb(16_185_129_/_10%)]"
           : "bg-transparent backdrop-blur-sm"
       }`}
     >
@@ -45,9 +46,10 @@ export function Navbar() {
         <nav className="flex h-16 items-center justify-between" aria-label="Main navigation">
           <a
             href="#"
-            className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-50"
+            className="font-mono text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
           >
-            <span className="neon-title">{profile.name}</span>
+            <span className="text-neutral-400 dark:text-neutral-500">~/</span>
+            <span className="terminal-title">{profile.name}</span>
           </a>
 
           {/* Desktop nav */}
@@ -56,7 +58,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/62 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800/70 dark:hover:text-white"
+                className="rounded-lg px-3 py-2 font-mono text-sm font-medium text-neutral-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-400 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
               >
                 {link.label}
               </a>
@@ -71,7 +73,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="glass-surface rounded-xl p-2 text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+              className="terminal-surface rounded-lg p-2 text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -87,18 +89,16 @@ export function Navbar() {
           mobileOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
-        {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-slate-900/35 transition-opacity duration-300 dark:bg-black/55 ${
+          className={`absolute inset-0 bg-neutral-900/40 transition-opacity duration-300 dark:bg-black/60 ${
             mobileOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />
 
-        {/* Panel */}
         <div
-          className={`glass-surface absolute top-0 right-0 h-full w-64 border-l border-accent-200/30 bg-white/70 p-6 pt-20 shadow-2xl transition-transform duration-300 ease-out dark:border-accent-400/20 dark:bg-slate-950/72 ${
+          className={`terminal-surface absolute top-0 right-0 h-full w-64 border-l border-accent-500/15 p-6 pt-20 shadow-2xl transition-transform duration-300 ease-out ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -108,7 +108,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-all duration-200 hover:bg-white/65 hover:text-slate-950 dark:text-slate-200 dark:hover:bg-slate-800/70 dark:hover:text-white"
+                className="rounded-lg px-4 py-3 font-mono text-base font-medium text-neutral-700 transition-all duration-200 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-300 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
               >
                 {link.label}
               </a>

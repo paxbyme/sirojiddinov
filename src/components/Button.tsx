@@ -14,15 +14,15 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl font-medium transition-all duration-300";
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-mono font-medium transition-all duration-300";
 
   const variants = {
     primary:
-      "border border-accent-300/40 bg-gradient-to-r from-cyan-500 via-sky-500 to-fuchsia-500 text-white shadow-[0_12px_30px_rgb(56_189_248_/_32%)] hover:-translate-y-0.5 hover:shadow-[0_16px_38px_rgb(217_70_239_/_38%)] active:translate-y-0",
+      "bg-accent-600 text-white hover:-translate-y-0.5 hover:bg-accent-500 active:translate-y-0 dark:bg-accent-600 dark:hover:bg-accent-500",
     secondary:
-      "border border-slate-300/50 bg-white/55 text-slate-800 backdrop-blur-xl hover:-translate-y-0.5 hover:border-cyan-400/60 hover:bg-white/72 dark:border-slate-600/45 dark:bg-slate-900/50 dark:text-slate-100 dark:hover:border-cyan-300/60 dark:hover:bg-slate-900/65",
+      "border border-accent-600/30 bg-transparent text-accent-700 hover:-translate-y-0.5 hover:border-accent-500/50 hover:bg-accent-500/10 dark:border-accent-500/30 dark:text-accent-400 dark:hover:border-accent-400/50 dark:hover:bg-accent-500/10",
     ghost:
-      "text-slate-700 hover:-translate-y-0.5 hover:bg-white/60 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800/70 dark:hover:text-white",
+      "text-neutral-700 hover:-translate-y-0.5 hover:bg-neutral-200/60 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 dark:hover:text-white",
   };
 
   const sizes = {
