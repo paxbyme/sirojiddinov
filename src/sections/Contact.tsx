@@ -4,8 +4,9 @@ import { Container } from "../components/Container";
 import { SectionTitle } from "../components/SectionTitle";
 import { Button } from "../components/Button";
 import { Icon } from "../components/Icon";
+import { Card } from "../components/Card";
 import { Reveal } from "../components/Reveal";
-import { profile } from "../data/profile";
+import { useTranslation } from "../i18n/useTranslation";
 
 interface FormState {
   name: string;
@@ -19,19 +20,21 @@ interface FormErrors {
   message?: string;
 }
 
-function validate(form: FormState): FormErrors {
-  const errors: FormErrors = {};
-  if (!form.name.trim()) errors.name = "Name is required.";
-  if (!form.email.trim()) {
-    errors.email = "Email is required.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = "Enter a valid email address.";
-  }
-  if (!form.message.trim()) errors.message = "Message is required.";
-  return errors;
-}
-
 export function Contact() {
+  const { t, profile } = useTranslation();
+
+  function validate(form: FormState): FormErrors {
+    const errors: FormErrors = {};
+    if (!form.name.trim()) errors.name = t.validationNameRequired;
+    if (!form.email.trim()) {
+      errors.email = t.validationEmailRequired;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      errors.email = t.validationEmailInvalid;
+    }
+    if (!form.message.trim()) errors.message = t.validationMessageRequired;
+    return errors;
+  }
+
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
@@ -39,6 +42,8 @@ export function Contact() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -50,39 +55,65 @@ export function Contact() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const newErrors = validate(form);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    setSubmitted(true);
+
+    setSending(true);
+    setSendError(false);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/paxbyme@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `Portfolio contact from ${form.name}`,
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSendError(true);
+      }
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
     <section id="contact" className="py-24">
       <Container>
         <SectionTitle
-          title="Get in Touch"
-          subtitle="Have a project in mind? Let's talk."
+          title={t.contactTitle}
+          subtitle={t.contactSubtitle}
+          command={t.contactCommand}
         />
 
         <div className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-2">
           {/* Form */}
           <Reveal delay={80}>
-            <div className="glass-surface rounded-2xl p-6">
+            <Card title="contact.sh">
               {submitted ? (
-                <div className="flex flex-col items-center justify-center rounded-xl border border-accent-300/45 bg-accent-100/55 p-12 text-center dark:border-accent-400/25 dark:bg-accent-500/12">
+                <div className="flex flex-col items-center justify-center rounded-lg border border-accent-500/20 bg-accent-100/40 p-12 text-center dark:border-accent-500/15 dark:bg-accent-500/8">
                   <CheckCircle
                     size={48}
-                    className="mb-4 text-accent-700 dark:text-accent-300"
+                    className="mb-4 text-accent-600 dark:text-accent-400"
                   />
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-50">
-                    Message Sent!
+                  <h3 className="mb-2 font-mono text-lg font-bold text-neutral-900 dark:text-neutral-50">
+                    {t.contactSuccess}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
-                    Thanks for reaching out. I'll get back to you soon.
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                    {t.contactSuccessMessage}
                   </p>
                 </div>
               ) : (
@@ -90,9 +121,9 @@ export function Contact() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      Name
+                      <span className="terminal-prompt">{">"}</span> {t.contactName}
                     </label>
                     <input
                       id="name"
@@ -100,24 +131,24 @@ export function Contact() {
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className={`w-full rounded-xl border bg-white/62 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 backdrop-blur-md transition-colors focus:border-accent-500 focus:outline-none dark:bg-slate-900/55 dark:text-slate-100 dark:placeholder-slate-500 ${
+                      className={`w-full rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.name
                           ? "border-red-400 dark:border-red-500"
-                          : "border-slate-300/55 dark:border-slate-700/60"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
-                      placeholder="Your name"
+                      placeholder={t.contactNamePlaceholder}
                     />
                     {errors.name && (
-                      <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+                      <p className="mt-1 font-mono text-xs text-red-500">{errors.name}</p>
                     )}
                   </div>
 
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      Email
+                      <span className="terminal-prompt">{">"}</span> {t.contactEmail}
                     </label>
                     <input
                       id="email"
@@ -125,24 +156,24 @@ export function Contact() {
                       type="email"
                       value={form.email}
                       onChange={handleChange}
-                      className={`w-full rounded-xl border bg-white/62 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 backdrop-blur-md transition-colors focus:border-accent-500 focus:outline-none dark:bg-slate-900/55 dark:text-slate-100 dark:placeholder-slate-500 ${
+                      className={`w-full rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.email
                           ? "border-red-400 dark:border-red-500"
-                          : "border-slate-300/55 dark:border-slate-700/60"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
-                      placeholder="you@example.com"
+                      placeholder={t.contactEmailPlaceholder}
                     />
                     {errors.email && (
-                      <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                      <p className="mt-1 font-mono text-xs text-red-500">{errors.email}</p>
                     )}
                   </div>
 
                   <div>
                     <label
                       htmlFor="message"
-                      className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      Message
+                      <span className="terminal-prompt">{">"}</span> {t.contactMessage}
                     </label>
                     <textarea
                       id="message"
@@ -150,42 +181,49 @@ export function Contact() {
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
-                      className={`w-full resize-none rounded-xl border bg-white/62 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 backdrop-blur-md transition-colors focus:border-accent-500 focus:outline-none dark:bg-slate-900/55 dark:text-slate-100 dark:placeholder-slate-500 ${
+                      className={`w-full resize-none rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.message
                           ? "border-red-400 dark:border-red-500"
-                          : "border-slate-300/55 dark:border-slate-700/60"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
-                      placeholder="Tell me about your project..."
+                      placeholder={t.contactMessagePlaceholder}
                     />
                     {errors.message && (
-                      <p className="mt-1 text-xs text-red-500">
+                      <p className="mt-1 font-mono text-xs text-red-500">
                         {errors.message}
                       </p>
                     )}
                   </div>
+
+                  {sendError && (
+                    <p className="font-mono text-xs text-red-500">
+                      {t.contactSendError}
+                    </p>
+                  )}
 
                   <Button
                     type="submit"
                     variant="primary"
                     size="lg"
                     className="w-full"
+                    disabled={sending}
                   >
                     <Send size={18} />
-                    Send Message
+                    {sending ? t.contactSending : t.contactSend}
                   </Button>
                 </form>
               )}
-            </div>
+            </Card>
           </Reveal>
 
           {/* Social links */}
           <Reveal delay={150}>
-            <div className="glass-surface flex flex-col justify-center rounded-2xl p-6">
-              <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-50">
-                Or find me on
+            <Card title="socials.sh">
+              <h3 className="mb-2 font-mono text-lg font-bold text-neutral-900 dark:text-neutral-50">
+                {t.contactOrFindMe}
               </h3>
-              <p className="mb-6 text-sm text-slate-600 dark:text-slate-300">
-                Feel free to reach out through any of these platforms.
+              <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-300">
+                {t.contactPlatformsMessage}
               </p>
 
               <div className="space-y-3">
@@ -195,20 +233,20 @@ export function Contact() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 rounded-xl border border-slate-300/50 bg-white/54 p-4 text-slate-700 transition-all duration-300 hover:translate-x-1.5 hover:border-accent-400/55 hover:bg-white/70 dark:border-slate-700/60 dark:bg-slate-900/52 dark:text-slate-200 dark:hover:border-accent-400/45 dark:hover:bg-slate-900/72"
+                      className="flex items-center gap-3 rounded-lg border border-accent-500/12 bg-white/40 p-4 font-mono text-neutral-700 transition-all duration-300 hover:translate-x-1.5 hover:border-accent-500/30 hover:bg-accent-500/5 dark:border-accent-500/10 dark:bg-neutral-900/40 dark:text-neutral-300 dark:hover:border-accent-500/25 dark:hover:bg-accent-500/8"
                       aria-label={`Visit ${link.platform} profile`}
                     >
                       <Icon
                         name={link.icon}
                         size={20}
-                        className="text-accent-700 dark:text-accent-300"
+                        className="text-accent-600 dark:text-accent-400"
                       />
                       <span className="text-sm font-medium">{link.platform}</span>
                     </a>
                   </Reveal>
                 ))}
               </div>
-            </div>
+            </Card>
           </Reveal>
         </div>
       </Container>

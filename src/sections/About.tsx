@@ -3,33 +3,39 @@ import { SectionTitle } from "../components/SectionTitle";
 import { Card } from "../components/Card";
 import { Icon } from "../components/Icon";
 import { Reveal } from "../components/Reveal";
-import { profile } from "../data/profile";
+import { useTranslation } from "../i18n/useTranslation";
 
 export function About() {
+  const { t, profile } = useTranslation();
+
   return (
     <section id="about" className="py-24">
       <Container>
-        <SectionTitle title="About Me" subtitle="A little bit about who I am and what I do." />
+        <SectionTitle
+          title={t.aboutTitle}
+          subtitle={t.aboutSubtitle}
+          command={t.aboutCommand}
+        />
 
         <Reveal delay={80}>
-          <div className="mx-auto mb-16 max-w-2xl text-center">
-            <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <Card title="about.md" className="mx-auto mb-16 max-w-2xl">
+            <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
               {profile.bio}
             </p>
-          </div>
+          </Card>
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {profile.highlights.map((highlight, index) => (
             <Reveal key={highlight.title} delay={120 + index * 90}>
-              <Card hover>
-                <div className="mb-4 inline-flex rounded-xl border border-accent-300/45 bg-accent-100/65 p-3 text-accent-700 dark:border-accent-400/30 dark:bg-accent-500/10 dark:text-accent-200">
+              <Card hover title={highlight.title}>
+                <div className="mb-4 inline-flex rounded-lg border border-accent-500/25 bg-accent-100/50 p-3 text-accent-700 dark:border-accent-500/20 dark:bg-accent-500/10 dark:text-accent-400">
                   <Icon name={highlight.icon} size={24} />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-50">
+                <h3 className="mb-2 font-mono text-lg font-semibold text-neutral-900 dark:text-neutral-50">
                   {highlight.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
                   {highlight.description}
                 </p>
               </Card>
