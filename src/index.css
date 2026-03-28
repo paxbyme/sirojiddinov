@@ -4,22 +4,19 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --color-accent-50: #ecfdf5;
-  --color-accent-100: #d1fae5;
-  --color-accent-200: #a7f3d0;
-  --color-accent-300: #6ee7b7;
-  --color-accent-400: #34d399;
-  --color-accent-500: #10b981;
-  --color-accent-600: #059669;
-  --color-accent-700: #047857;
-  --color-accent-800: #065f46;
-  --color-accent-900: #064e3b;
-
-  --color-lime-300: #bef264;
-  --color-lime-400: #a3e635;
-  --color-lime-500: #84cc16;
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-200: #bfdbfe;
+  --color-accent-300: #93c5fd;
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #3b82f6;
+  --color-accent-600: #2563eb;
+  --color-accent-700: #1d4ed8;
+  --color-accent-800: #1e40af;
+  --color-accent-900: #1e3a8a;
 
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
@@ -43,20 +40,12 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: #1e293b;
-  background:
-    radial-gradient(800px 500px at 20% 10%, rgb(16 185 129 / 8%), transparent 60%),
-    radial-gradient(600px 400px at 80% 80%, rgb(16 185 129 / 5%), transparent 60%),
-    linear-gradient(180deg, #f8faf9 0%, #f1f5f3 45%, #e8ede9 100%);
-  background-attachment: fixed;
+  background: #fafafa;
 }
 
 .dark body {
   color: #e2e8f0;
-  background:
-    radial-gradient(800px 500px at 20% 10%, rgb(16 185 129 / 8%), transparent 60%),
-    radial-gradient(600px 400px at 80% 80%, rgb(16 185 129 / 4%), transparent 60%),
-    linear-gradient(180deg, #0a0f0d 0%, #070b09 45%, #0a0f0d 100%);
-  background-attachment: fixed;
+  background: #09090b;
 }
 
 /* Focus styles */
@@ -77,7 +66,7 @@ body {
   color: var(--color-neutral-100);
 }
 
-/* Global backdrop */
+/* ─── Global backdrop ─── */
 .app-backdrop {
   position: fixed;
   inset: 0;
@@ -86,127 +75,127 @@ body {
   pointer-events: none;
 }
 
-.app-grid {
+/* Gradient mesh background */
+.gradient-mesh {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(to right, rgb(16 185 129 / 10%) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(16 185 129 / 10%) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 45%, transparent 100%);
-  opacity: 0.35;
+  background:
+    radial-gradient(600px 600px at 15% 15%, rgb(59 130 246 / 8%), transparent 60%),
+    radial-gradient(500px 500px at 85% 20%, rgb(139 92 246 / 6%), transparent 60%),
+    radial-gradient(700px 500px at 50% 80%, rgb(59 130 246 / 5%), transparent 60%);
 }
 
-.dark .app-grid {
-  background-image:
-    linear-gradient(to right, rgb(16 185 129 / 12%) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(16 185 129 / 12%) 1px, transparent 1px);
-  opacity: 0.25;
+.dark .gradient-mesh {
+  background:
+    radial-gradient(600px 600px at 15% 15%, rgb(59 130 246 / 10%), transparent 60%),
+    radial-gradient(500px 500px at 85% 20%, rgb(139 92 246 / 8%), transparent 60%),
+    radial-gradient(700px 500px at 50% 80%, rgb(59 130 246 / 6%), transparent 60%);
 }
 
-/* Scanline */
-.scanline {
+/* Subtle dot pattern */
+.dot-pattern {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgb(16 185 129 / 2%) 2px,
-    rgb(16 185 129 / 2%) 4px
-  );
-  pointer-events: none;
+  background-image: radial-gradient(rgb(0 0 0 / 6%) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  opacity: 0.5;
+}
+
+.dark .dot-pattern {
+  background-image: radial-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px);
   opacity: 0.4;
 }
 
-.dark .scanline {
-  opacity: 0.3;
-}
-
-/* Terminal surface — glassmorphism + terminal hybrid */
-.terminal-surface {
-  border: 1px solid rgb(16 185 129 / 22%);
-  background: rgb(255 255 255 / 48%);
+/* ─── Glass surface — 2026 refined glassmorphism ─── */
+.glass-surface {
+  border: 1px solid rgb(0 0 0 / 6%);
+  background: rgb(255 255 255 / 60%);
   box-shadow:
-    0 18px 45px rgb(16 185 129 / 10%),
-    inset 0 1px 0 rgb(255 255 255 / 70%);
-  backdrop-filter: blur(18px) saturate(140%);
+    0 1px 2px rgb(0 0 0 / 5%),
+    0 8px 32px rgb(0 0 0 / 4%);
+  backdrop-filter: blur(20px) saturate(120%);
+  border-radius: 16px;
 }
 
-.dark .terminal-surface {
-  border-color: rgb(16 185 129 / 18%);
-  background: rgb(10 15 13 / 50%);
+.dark .glass-surface {
+  border-color: rgb(255 255 255 / 8%);
+  background: rgb(24 24 27 / 60%);
   box-shadow:
-    0 20px 50px rgb(4 10 7 / 40%),
-    0 0 1px rgb(16 185 129 / 20%),
-    inset 0 1px 0 rgb(255 255 255 / 8%);
-  backdrop-filter: blur(18px) saturate(130%);
+    0 1px 2px rgb(0 0 0 / 20%),
+    0 8px 32px rgb(0 0 0 / 20%);
+  backdrop-filter: blur(20px) saturate(120%);
 }
 
-/* Terminal header with traffic light dots */
-.terminal-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 16px;
-  border-bottom: 1px solid rgb(16 185 129 / 12%);
+/* ─── Bento grid ─── */
+.bento-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(120px, auto);
 }
 
-.terminal-header::before {
-  content: "";
-  display: inline-flex;
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  background: #ef4444;
-  box-shadow: 20px 0 0 #eab308, 40px 0 0 #22c55e;
+.bento-grid > .bento-wide {
+  grid-column: span 2;
 }
 
-.dark .terminal-header {
-  border-bottom-color: rgb(16 185 129 / 10%);
+.bento-grid > .bento-tall {
+  grid-row: span 2;
 }
 
-/* Terminal cursor */
-.terminal-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 1.1em;
-  background: var(--color-accent-500);
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  animation: cursor-blink 1s step-end infinite;
+.bento-grid > .bento-full {
+  grid-column: span 4;
 }
 
-/* Terminal prompt */
-.terminal-prompt {
-  color: var(--color-lime-400);
-  font-family: var(--font-mono);
-  font-weight: 700;
+@media (max-width: 1023px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-grid > .bento-full {
+    grid-column: span 2;
+  }
 }
 
-.dark .terminal-prompt {
-  color: var(--color-lime-300);
+@media (max-width: 639px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-grid > .bento-wide,
+  .bento-grid > .bento-full {
+    grid-column: span 1;
+  }
 }
 
-/* Terminal title */
-.terminal-title {
-  font-family: var(--font-mono);
-  color: var(--color-accent-600);
+/* ─── 3D tilt card ─── */
+.tilt-card {
+  transition: transform 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99),
+    box-shadow 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.dark .terminal-title {
-  color: var(--color-accent-400);
+.tilt-card:hover {
+  box-shadow:
+    0 20px 60px rgb(59 130 246 / 10%),
+    0 1px 3px rgb(0 0 0 / 6%);
 }
 
-/* Project preview */
+.dark .tilt-card:hover {
+  box-shadow:
+    0 20px 60px rgb(59 130 246 / 12%),
+    0 1px 3px rgb(0 0 0 / 20%);
+}
+
+/* ─── Project card preview ─── */
 .project-preview {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgb(16 185 129 / 15%);
-  background:
-    radial-gradient(circle at 20% 20%, rgb(16 185 129 / 12%), transparent 48%),
-    radial-gradient(circle at 80% 75%, rgb(132 204 22 / 10%), transparent 56%),
-    linear-gradient(130deg, rgb(10 15 13 / 30%), rgb(7 11 9 / 60%));
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+}
+
+.dark .project-preview {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .project-preview::after {
@@ -216,38 +205,59 @@ body {
   background: linear-gradient(
     120deg,
     transparent 35%,
-    rgb(255 255 255 / 12%) 50%,
+    rgb(59 130 246 / 10%) 50%,
     transparent 66%
   );
   transform: translateX(-120%);
-  animation: shimmer 4.5s ease-in-out infinite;
+  animation: shimmer 5s ease-in-out infinite;
 }
 
-/* Motion primitives */
+/* ─── Status indicator ─── */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgb(34 197 94 / 50%);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── Section divider ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(59 130 246 / 20%), transparent);
+}
+
+.dark .section-divider {
+  background: linear-gradient(90deg, transparent, rgb(59 130 246 / 15%), transparent);
+}
+
+/* ─── Motion primitives ─── */
 .reveal {
   opacity: 0;
-  transform: translate3d(0, 18px, 0) scale(0.985);
-  filter: blur(2px);
+  transform: translate3d(0, 24px, 0);
+  filter: blur(4px);
   transition:
-    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 560ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform, filter;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0);
   filter: blur(0);
 }
 
 .motion-float {
-  animation: float-soft 7s ease-in-out infinite;
+  animation: float-soft 6s ease-in-out infinite;
 }
 
 .modal-backdrop-enter {
-  animation: backdrop-in 220ms ease-out both;
+  animation: backdrop-in 250ms ease-out both;
 }
 
 .modal-backdrop-exit {
@@ -255,23 +265,57 @@ body {
 }
 
 .modal-panel-enter {
-  animation: modal-in 320ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  animation: modal-in 350ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
   transform-origin: center top;
 }
 
 .modal-panel-exit {
-  animation: modal-out 220ms cubic-bezier(0.4, 0, 1, 1) both;
+  animation: modal-out 250ms cubic-bezier(0.4, 0, 1, 1) both;
   transform-origin: center top;
 }
 
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* ─── Magnetic hover (subtle lift) ─── */
+.magnetic-hover {
+  transition: transform 300ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
+}
+
+.magnetic-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── Gradient text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #3b82f6 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #60a5fa 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+/* ─── Keyframes ─── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
 }
 
 @keyframes float-soft {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes backdrop-in {
@@ -287,7 +331,7 @@ body {
 @keyframes modal-in {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.97);
+    transform: translateY(20px) scale(0.96);
   }
   to {
     opacity: 1;
@@ -302,7 +346,7 @@ body {
   }
   to {
     opacity: 0;
-    transform: translateY(14px) scale(0.985);
+    transform: translateY(16px) scale(0.98);
   }
 }
 
@@ -332,7 +376,7 @@ body {
 
   .motion-float,
   .project-preview::after,
-  .terminal-cursor {
+  .status-dot {
     animation: none !important;
   }
 }

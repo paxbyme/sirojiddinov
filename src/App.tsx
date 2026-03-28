@@ -12,8 +12,8 @@ export default function App() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
       <div className="app-backdrop" aria-hidden="true">
-        <div className="app-grid" />
-        <div className="scanline" />
+        <div className="gradient-mesh" />
+        <div className="dot-pattern" />
       </div>
 
       <div className="relative z-10">

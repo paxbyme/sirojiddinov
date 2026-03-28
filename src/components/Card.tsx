@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 interface CardProps {
   children: React.ReactNode;
   className?: string;
@@ -5,22 +7,35 @@ interface CardProps {
   title?: string;
 }
 
-export function Card({ children, className = "", hover = false, title }: CardProps) {
+export function Card({ children, className = "", hover = false }: CardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!hover || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -4;
+    const rotateY = ((x - centerX) / centerX) * 4;
+    cardRef.current.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  }
+
+  function handleMouseLeave() {
+    if (!hover || !cardRef.current) return;
+    cardRef.current.style.transform = "perspective(800px) rotateX(0) rotateY(0) scale(1)";
+  }
+
   return (
     <div
-      className={`terminal-surface rounded-lg overflow-hidden ${
-        hover
-          ? "transition-all duration-300 hover:-translate-y-1.5 hover:border-accent-300/50 hover:shadow-[0_22px_48px_rgb(16_185_129_/_16%)] dark:hover:border-accent-400/45 dark:hover:shadow-[0_24px_52px_rgb(16_185_129_/_20%)]"
-          : ""
+      ref={cardRef}
+      onMouseMove={hover ? handleMouseMove : undefined}
+      onMouseLeave={hover ? handleMouseLeave : undefined}
+      className={`glass-surface overflow-hidden ${
+        hover ? "tilt-card cursor-pointer" : ""
       } ${className}`}
     >
-      {title != null && (
-        <div className="terminal-header">
-          <span className="ml-14 font-mono text-xs text-neutral-500 dark:text-neutral-400">
-            {title}
-          </span>
-        </div>
-      )}
       <div className="p-6">{children}</div>
     </div>
   );
