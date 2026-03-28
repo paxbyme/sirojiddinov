@@ -20,14 +20,16 @@ export function LanguageSwitcher() {
         setOpen(false);
       }
     }
-    if (open) document.addEventListener("mousedown", handleClickOutside);
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
   return (
     <div ref={ref} className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="theme-card mb-2 p-1.5 shadow-xl">
+        <div className="terminal-surface mb-2 rounded-lg p-1 shadow-lg">
           {localeOptions.map((opt) => (
             <button
               key={opt.code}
@@ -35,10 +37,10 @@ export function LanguageSwitcher() {
                 setLocale(opt.code);
                 setOpen(false);
               }}
-              className={`flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm transition-all duration-300 ${
+              className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-mono transition-colors ${
                 locale === opt.code
-                  ? "bg-accent-500/12 font-medium text-accent-700 dark:text-accent-400"
-                  : "text-neutral-600 hover:bg-neutral-100/80 dark:text-neutral-300 dark:hover:bg-neutral-800/80"
+                  ? "bg-accent-500/15 text-accent-700 dark:text-accent-400"
+                  : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800/60"
               }`}
             >
               <span>{opt.flag}</span>
@@ -49,10 +51,10 @@ export function LanguageSwitcher() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="theme-card flex items-center gap-2 px-4 py-3 text-sm font-medium shadow-lg transition-all duration-500 hover:scale-[1.03]"
+        className="terminal-surface flex items-center gap-2 rounded-lg px-3 py-2.5 font-mono text-sm font-medium text-neutral-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-500/40 dark:text-neutral-300 dark:hover:border-accent-400/40"
         aria-label="Change language"
       >
-        <Globe size={16} className="text-accent-500 dark:text-accent-400" />
+        <Globe size={18} className="text-accent-600 dark:text-accent-400" />
         <span className="uppercase">{locale}</span>
       </button>
     </div>

@@ -9,24 +9,25 @@ export function Skills() {
   const { t, profile } = useTranslation();
 
   return (
-    <section id="skills" className="py-28">
+    <section
+      id="skills"
+      className="border-y border-accent-500/10 py-24 dark:border-accent-500/8"
+    >
       <Container>
-        <div className="section-fade mb-28" />
+        <SectionTitle
+          title={t.skillsTitle}
+          subtitle={t.skillsSubtitle}
+          command={t.skillsCommand}
+        />
 
-        <SectionTitle title={t.skillsTitle} subtitle={t.skillsSubtitle} />
-
-        <div className="bento-grid">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {profile.skillCategories.map((category, index) => (
-            <Reveal
-              key={category.title}
-              delay={60 + index * 90}
-              className={index === 0 ? "bento-wide" : ""}
-            >
-              <Card hover className="h-full">
-                <p className="mb-5 text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase dark:text-neutral-400">
+            <Reveal key={category.title} delay={70 + index * 80}>
+              <Card title={category.title}>
+                <h3 className="mb-4 font-mono text-sm font-bold tracking-wide text-accent-700 uppercase dark:text-accent-400">
                   {category.title}
-                </p>
-                <div className="flex flex-wrap gap-2.5">
+                </h3>
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <Tag key={skill.name}>{skill.name}</Tag>
                   ))}

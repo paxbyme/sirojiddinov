@@ -14,21 +14,21 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl font-medium transition-all duration-500 ease-out";
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-mono font-medium transition-all duration-300";
 
   const variants = {
     primary:
-      "btn-primary hover:scale-[1.02] active:scale-[0.98]",
+      "bg-accent-600 text-white hover:-translate-y-0.5 hover:bg-accent-500 active:translate-y-0 dark:bg-accent-600 dark:hover:bg-accent-500",
     secondary:
-      "btn-secondary border bg-white/60 text-neutral-700 backdrop-blur-sm hover:bg-white/80 hover:scale-[1.02] active:scale-[0.98] dark:bg-neutral-800/60 dark:text-neutral-300",
+      "border border-accent-600/30 bg-transparent text-accent-700 hover:-translate-y-0.5 hover:border-accent-500/50 hover:bg-accent-500/10 dark:border-accent-500/30 dark:text-accent-400 dark:hover:border-accent-400/50 dark:hover:bg-accent-500/10",
     ghost:
-      "text-neutral-600 hover:bg-neutral-100/80 hover:text-neutral-900 active:scale-[0.98] dark:text-neutral-400 dark:hover:bg-neutral-800/80 dark:hover:text-white",
+      "text-neutral-700 hover:-translate-y-0.5 hover:bg-neutral-200/60 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 dark:hover:text-white",
   };
 
   const sizes = {
-    sm: "px-4 py-2.5 text-sm",
-    md: "px-5 py-3 text-sm",
-    lg: "px-8 py-4 text-base",
+    sm: "px-3.5 py-2 text-sm",
+    md: "px-5 py-2.5 text-sm",
+    lg: "px-6.5 py-3 text-base",
   };
 
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;

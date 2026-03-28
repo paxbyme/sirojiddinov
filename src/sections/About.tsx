@@ -9,26 +9,35 @@ export function About() {
   const { t, profile } = useTranslation();
 
   return (
-    <section id="about" className="py-28">
+    <section id="about" className="py-24">
       <Container>
-        <SectionTitle title={t.aboutTitle} subtitle={t.aboutSubtitle} />
+        <SectionTitle
+          title={t.aboutTitle}
+          subtitle={t.aboutSubtitle}
+          command={t.aboutCommand}
+        />
 
-        <div className="bento-grid">
-          <Reveal delay={60} className="bento-wide bento-tall">
-            <Card className="flex h-full flex-col justify-center">
-              <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-accent-500 uppercase">Bio</p>
-              <p className="text-lg leading-[1.8] text-neutral-600 dark:text-neutral-300">{profile.bio}</p>
-            </Card>
-          </Reveal>
+        <Reveal delay={80}>
+          <Card title="about.md" className="mx-auto mb-16 max-w-2xl">
+            <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+              {profile.bio}
+            </p>
+          </Card>
+        </Reveal>
 
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {profile.highlights.map((highlight, index) => (
-            <Reveal key={highlight.title} delay={150 + index * 100}>
-              <Card hover className="h-full">
-                <div className="icon-box mb-5 inline-flex rounded-2xl p-3.5 text-accent-600 dark:text-accent-400">
-                  <Icon name={highlight.icon} size={22} />
+            <Reveal key={highlight.title} delay={120 + index * 90}>
+              <Card hover title={highlight.title}>
+                <div className="mb-4 inline-flex rounded-lg border border-accent-500/25 bg-accent-100/50 p-3 text-accent-700 dark:border-accent-500/20 dark:bg-accent-500/10 dark:text-accent-400">
+                  <Icon name={highlight.icon} size={24} />
                 </div>
-                <h3 className="mb-2 text-base font-semibold text-neutral-900 dark:text-neutral-50">{highlight.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{highlight.description}</p>
+                <h3 className="mb-2 font-mono text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                  {highlight.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                  {highlight.description}
+                </p>
               </Card>
             </Reveal>
           ))}
