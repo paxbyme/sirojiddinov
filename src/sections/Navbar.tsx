@@ -29,43 +29,52 @@ export function Navbar() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "navbar-scrolled border-b shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
-          : "bg-transparent"
+          ? "border-b border-accent-500/20 bg-white/80 shadow-[0_4px_24px_rgb(16_185_129_/_8%)] backdrop-blur-xl dark:border-accent-500/15 dark:bg-neutral-950/80 dark:shadow-[0_4px_24px_rgb(16_185_129_/_10%)]"
+          : "bg-transparent backdrop-blur-sm"
       }`}
     >
       <Container>
-        <nav className="flex h-18 items-center justify-between" aria-label="Main navigation">
-          <a href="#" className="brand-text text-xl font-bold tracking-tight">
-            <span className="gradient-text">{profile.name}</span>
+        <nav className="flex h-16 items-center justify-between" aria-label="Main navigation">
+          <a
+            href="#"
+            className="font-mono text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
+          >
+            <span className="text-accent-500 dark:text-accent-400">{"{"}</span>
+            <span>{profile.name}</span>
+            <span className="text-accent-500 dark:text-accent-400">{"}"}</span>
           </a>
 
+          {/* Desktop nav */}
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-2xl px-4 py-2 text-sm font-medium text-neutral-500 transition-all duration-400 hover:bg-neutral-100/60 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-100"
+                className="rounded-lg px-3 py-2 font-mono text-sm font-medium text-neutral-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-400 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
               >
                 {link.label}
               </a>
             ))}
-            <div className="ml-3">
+            <div className="ml-2">
               <ThemeToggle />
             </div>
           </div>
 
+          {/* Mobile toggle */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="theme-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="terminal-surface rounded-lg p-2 text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -75,14 +84,24 @@ export function Navbar() {
         </nav>
       </Container>
 
-      <div className={`fixed inset-0 z-40 md:hidden ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
+      {/* Mobile slide-over */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden ${
+          mobileOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
         <div
-          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 dark:bg-black/40 ${mobileOpen ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 bg-neutral-900/40 transition-opacity duration-300 dark:bg-black/60 ${
+            mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />
+
         <div
-          className={`theme-card absolute top-0 right-0 h-full w-72 rounded-none border-l p-6 pt-24 shadow-2xl transition-transform duration-500 ease-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`terminal-surface absolute top-0 right-0 h-full w-64 border-l border-accent-500/15 p-6 pt-20 shadow-2xl transition-transform duration-300 ease-out ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
@@ -90,7 +109,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-2xl px-4 py-3.5 text-base font-medium text-neutral-600 transition-all duration-400 hover:bg-neutral-100/60 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-100"
+                className="rounded-lg px-4 py-3 font-mono text-base font-medium text-neutral-700 transition-all duration-200 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-300 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
               >
                 {link.label}
               </a>

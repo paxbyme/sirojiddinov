@@ -35,13 +35,19 @@ export function Contact() {
     return errors;
   }
 
-  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
@@ -84,27 +90,29 @@ export function Contact() {
     }
   }
 
-  const inputBase =
-    "w-full rounded-2xl border bg-white/50 px-5 py-3.5 text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-500 focus:border-accent-300 focus:ring-4 focus:ring-accent-100/50 focus:outline-none dark:bg-neutral-900/50 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-accent-500/50 dark:focus:ring-accent-500/10";
-
   return (
-    <section id="contact" className="py-28">
+    <section id="contact" className="py-24">
       <Container>
-        <div className="section-fade mb-28" />
+        <SectionTitle
+          title={t.contactTitle}
+          subtitle={t.contactSubtitle}
+          command={t.contactCommand}
+        />
 
-        <SectionTitle title={t.contactTitle} subtitle={t.contactSubtitle} />
-
-        <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-2">
           {/* Form */}
-          <Reveal delay={60}>
-            <Card>
+          <Reveal delay={80}>
+            <Card title="contact.sh">
               {submitted ? (
-                <div className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-accent-50/50 to-blue-50/50 p-12 text-center dark:from-accent-500/5 dark:to-blue-500/5">
-                  <CheckCircle size={48} className="mb-5 text-accent-500" />
-                  <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                <div className="flex flex-col items-center justify-center rounded-lg border border-accent-500/20 bg-accent-100/40 p-12 text-center dark:border-accent-500/15 dark:bg-accent-500/8">
+                  <CheckCircle
+                    size={48}
+                    className="mb-4 text-accent-600 dark:text-accent-400"
+                  />
+                  <h3 className="mb-2 font-mono text-lg font-bold text-neutral-900 dark:text-neutral-50">
                     {t.contactSuccess}
                   </h3>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300">
                     {t.contactSuccessMessage}
                   </p>
                 </div>
@@ -113,9 +121,9 @@ export function Contact() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      {t.contactName}
+                      <span className="terminal-prompt">{">"}</span> {t.contactName}
                     </label>
                     <input
                       id="name"
@@ -123,24 +131,24 @@ export function Contact() {
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className={`${inputBase} ${
+                      className={`w-full rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.name
-                          ? "border-red-300 dark:border-red-500"
-                          : "border-neutral-200/60 dark:border-neutral-700/60"
+                          ? "border-red-400 dark:border-red-500"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
                       placeholder={t.contactNamePlaceholder}
                     />
                     {errors.name && (
-                      <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>
+                      <p className="mt-1 font-mono text-xs text-red-500">{errors.name}</p>
                     )}
                   </div>
 
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      {t.contactEmail}
+                      <span className="terminal-prompt">{">"}</span> {t.contactEmail}
                     </label>
                     <input
                       id="email"
@@ -148,24 +156,24 @@ export function Contact() {
                       type="email"
                       value={form.email}
                       onChange={handleChange}
-                      className={`${inputBase} ${
+                      className={`w-full rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.email
-                          ? "border-red-300 dark:border-red-500"
-                          : "border-neutral-200/60 dark:border-neutral-700/60"
+                          ? "border-red-400 dark:border-red-500"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
                       placeholder={t.contactEmailPlaceholder}
                     />
                     {errors.email && (
-                      <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>
+                      <p className="mt-1 font-mono text-xs text-red-500">{errors.email}</p>
                     )}
                   </div>
 
                   <div>
                     <label
                       htmlFor="message"
-                      className="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                      className="mb-1.5 block font-mono text-sm font-medium text-neutral-700 dark:text-neutral-300"
                     >
-                      {t.contactMessage}
+                      <span className="terminal-prompt">{">"}</span> {t.contactMessage}
                     </label>
                     <textarea
                       id="message"
@@ -173,20 +181,24 @@ export function Contact() {
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
-                      className={`resize-none ${inputBase} ${
+                      className={`w-full resize-none rounded-lg border bg-white/60 px-4 py-2.5 font-mono text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder-neutral-500 ${
                         errors.message
-                          ? "border-red-300 dark:border-red-500"
-                          : "border-neutral-200/60 dark:border-neutral-700/60"
+                          ? "border-red-400 dark:border-red-500"
+                          : "border-neutral-300/50 dark:border-neutral-700/50"
                       }`}
                       placeholder={t.contactMessagePlaceholder}
                     />
                     {errors.message && (
-                      <p className="mt-1.5 text-xs text-red-500">{errors.message}</p>
+                      <p className="mt-1 font-mono text-xs text-red-500">
+                        {errors.message}
+                      </p>
                     )}
                   </div>
 
                   {sendError && (
-                    <p className="text-xs text-red-500">{t.contactSendError}</p>
+                    <p className="font-mono text-xs text-red-500">
+                      {t.contactSendError}
+                    </p>
                   )}
 
                   <Button
@@ -206,28 +218,28 @@ export function Contact() {
 
           {/* Social links */}
           <Reveal delay={150}>
-            <Card>
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+            <Card title="socials.sh">
+              <h3 className="mb-2 font-mono text-lg font-bold text-neutral-900 dark:text-neutral-50">
                 {t.contactOrFindMe}
               </h3>
-              <p className="mb-7 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-300">
                 {t.contactPlatformsMessage}
               </p>
 
               <div className="space-y-3">
                 {profile.socialLinks.map((link, index) => (
-                  <Reveal key={link.platform} delay={200 + index * 80}>
+                  <Reveal key={link.platform} delay={180 + index * 80}>
                     <a
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3.5 rounded-2xl border border-neutral-200/40 bg-white/30 p-4.5 text-neutral-600 transition-all duration-500 hover:border-accent-300/50 hover:bg-accent-50/30 hover:text-accent-700 dark:border-neutral-800/40 dark:bg-neutral-900/30 dark:text-neutral-300 dark:hover:border-accent-500/25 dark:hover:bg-accent-500/5 dark:hover:text-accent-400"
+                      className="flex items-center gap-3 rounded-lg border border-accent-500/12 bg-white/40 p-4 font-mono text-neutral-700 transition-all duration-300 hover:translate-x-1.5 hover:border-accent-500/30 hover:bg-accent-500/5 dark:border-accent-500/10 dark:bg-neutral-900/40 dark:text-neutral-300 dark:hover:border-accent-500/25 dark:hover:bg-accent-500/8"
                       aria-label={`Visit ${link.platform} profile`}
                     >
                       <Icon
                         name={link.icon}
                         size={20}
-                        className="text-accent-500 dark:text-accent-400"
+                        className="text-accent-600 dark:text-accent-400"
                       />
                       <span className="text-sm font-medium">{link.platform}</span>
                     </a>
