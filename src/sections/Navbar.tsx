@@ -36,17 +36,17 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-neutral-200/60 bg-white/70 shadow-sm backdrop-blur-2xl dark:border-neutral-800/60 dark:bg-neutral-950/70"
+          ? "border-b border-neutral-200/40 bg-white/60 shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:border-neutral-800/40 dark:bg-neutral-950/60 dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
           : "bg-transparent"
       }`}
     >
       <Container>
-        <nav className="flex h-16 items-center justify-between" aria-label="Main navigation">
+        <nav className="flex h-18 items-center justify-between" aria-label="Main navigation">
           <a
             href="#"
-            className="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
+            className="text-xl font-bold tracking-tight"
           >
             <span className="gradient-text">{profile.name}</span>
           </a>
@@ -57,7 +57,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3.5 py-2 text-sm font-medium text-neutral-500 transition-all duration-200 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+                className="rounded-2xl px-4 py-2 text-sm font-medium text-neutral-500 transition-all duration-400 hover:bg-neutral-100/60 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-100"
               >
                 {link.label}
               </a>
@@ -72,7 +72,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="glass-surface rounded-xl p-2 text-neutral-500 transition-all duration-300 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="glass-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -89,7 +89,7 @@ export function Navbar() {
         }`}
       >
         <div
-          className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 dark:bg-black/50 ${
+          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 dark:bg-black/40 ${
             mobileOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setMobileOpen(false)}
@@ -97,7 +97,7 @@ export function Navbar() {
         />
 
         <div
-          className={`absolute top-0 right-0 h-full w-72 border-l border-neutral-200/60 bg-white/90 p-6 pt-20 shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-out dark:border-neutral-800/60 dark:bg-neutral-950/90 ${
+          className={`absolute top-0 right-0 h-full w-72 border-l border-neutral-200/40 bg-white/80 p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-neutral-800/40 dark:bg-neutral-950/80 ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -107,7 +107,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-4 py-3 text-base font-medium text-neutral-600 transition-all duration-200 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+                className="rounded-2xl px-4 py-3.5 text-base font-medium text-neutral-600 transition-all duration-400 hover:bg-neutral-100/60 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-100"
               >
                 {link.label}
               </a>

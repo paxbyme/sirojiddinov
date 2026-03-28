@@ -5,11 +5,11 @@ export function Footer() {
   const { t, profile } = useTranslation();
 
   return (
-    <footer className="py-8">
+    <footer className="pb-10 pt-4">
       <Container>
-        <div className="section-divider mb-8" />
+        <div className="section-fade mb-8" />
         <p className="text-center text-sm text-neutral-400 dark:text-neutral-500">
-          &copy; {new Date().getFullYear()} {profile.name}. {t.footerBuiltWith}
+          &copy; {new Date().getFullYear()} <span className="gradient-text font-medium">{profile.name}</span>. {t.footerBuiltWith}
         </p>
       </Container>
     </footer>
