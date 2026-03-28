@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
   return (
     <div ref={ref} className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="terminal-surface mb-2 rounded-lg p-1 shadow-lg">
+        <div className="glass-surface mb-2 p-1.5 shadow-xl">
           {localeOptions.map((opt) => (
             <button
               key={opt.code}
@@ -37,10 +37,10 @@ export function LanguageSwitcher() {
                 setLocale(opt.code);
                 setOpen(false);
               }}
-              className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-mono transition-colors ${
+              className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                 locale === opt.code
-                  ? "bg-accent-500/15 text-accent-700 dark:text-accent-400"
-                  : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800/60"
+                  ? "bg-accent-500/15 font-medium text-accent-700 dark:text-accent-400"
+                  : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
               }`}
             >
               <span>{opt.flag}</span>
@@ -51,10 +51,10 @@ export function LanguageSwitcher() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="terminal-surface flex items-center gap-2 rounded-lg px-3 py-2.5 font-mono text-sm font-medium text-neutral-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-500/40 dark:text-neutral-300 dark:hover:border-accent-400/40"
+        className="glass-surface flex items-center gap-2 px-3.5 py-2.5 text-sm font-medium text-neutral-600 shadow-lg transition-all duration-300 hover:text-accent-600 dark:text-neutral-400 dark:hover:text-accent-400"
         aria-label="Change language"
       >
-        <Globe size={18} className="text-accent-600 dark:text-accent-400" />
+        <Globe size={16} className="text-accent-500 dark:text-accent-400" />
         <span className="uppercase">{locale}</span>
       </button>
     </div>
