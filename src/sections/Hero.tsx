@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ArrowDown, Mail } from "lucide-react";
 import { Container } from "../components/Container";
 import { Button } from "../components/Button";
@@ -9,9 +10,25 @@ import { useTypingEffect } from "../hooks/useTypingEffect";
 export function Hero() {
   const { t, profile } = useTranslation();
   const { displayText, isComplete } = useTypingEffect(profile.heroDescription, 30, 600);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section className="flex min-h-[100dvh] items-center pt-16" aria-label="Introduction">
+    <section
+      className="relative flex min-h-[100dvh] items-center pt-16"
+      aria-label="Introduction"
+      style={{
+        transform: `translateY(${scrollY * 0.3}px)`,
+        opacity: 1 - scrollY / 800,
+      }}
+    >
       <Container>
         <div className="flex flex-col items-center gap-12 md:flex-row md:justify-between">
           {/* Text */}
@@ -22,9 +39,11 @@ export function Hero() {
               </p>
             </Reveal>
             <Reveal delay={120} threshold={0.1}>
-              <h1 className="font-mono text-4xl leading-tight font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl dark:text-neutral-50">
+              <h1 className="font-mono text-4xl leading-[1.15] font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl dark:text-neutral-50">
                 <span className="terminal-prompt">{">"}</span>{" "}
-                {profile.heroTagline}
+                <span className="inline-block hover:scale-105 transition-transform duration-300">
+                  {profile.heroTagline}
+                </span>
                 <span className="terminal-cursor" />
               </h1>
             </Reveal>

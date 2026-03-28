@@ -36,10 +36,10 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-accent-500/20 bg-white/80 shadow-[0_4px_24px_rgb(16_185_129_/_8%)] backdrop-blur-xl dark:border-accent-500/15 dark:bg-neutral-950/80 dark:shadow-[0_4px_24px_rgb(16_185_129_/_10%)]"
-          : "bg-transparent backdrop-blur-sm"
+          ? "border-b border-accent-500/25 bg-white/85 shadow-[0_8px_32px_rgb(16_185_129_/_12%),0_4px_16px_rgb(16_185_129_/_8%)] backdrop-blur-2xl dark:border-accent-500/20 dark:bg-neutral-950/85 dark:shadow-[0_8px_32px_rgb(16_185_129_/_15%),0_4px_16px_rgb(16_185_129_/_10%)]"
+          : "bg-transparent backdrop-blur-md"
       }`}
     >
       <Container>
@@ -59,9 +59,10 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2 font-mono text-sm font-medium text-neutral-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-400 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
+                className="group relative overflow-hidden rounded-lg px-3 py-2 font-mono text-sm font-medium text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-accent-700 dark:text-neutral-400 dark:hover:text-accent-400"
               >
-                {link.label}
+                <span className="relative z-10">{link.label}</span>
+                <span className="absolute inset-0 rounded-lg bg-gradient-to-br from-accent-500/10 to-accent-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-accent-500/12 dark:to-accent-600/8" />
               </a>
             ))}
             <div className="ml-2">
