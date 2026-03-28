@@ -25,7 +25,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="glass-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-accent-500 dark:text-neutral-400 dark:hover:text-accent-400"
+      className="onyx-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
       aria-label={dark ? t.themeSwitchToLight : t.themeSwitchToDark}
     >
       {dark ? <Sun size={18} /> : <Moon size={18} />}

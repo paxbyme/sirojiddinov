@@ -49,7 +49,7 @@ function ProjectModal({
       />
 
       <div
-        className={`glass-card relative w-full max-w-lg overflow-hidden shadow-2xl ${
+        className={`onyx-card relative w-full max-w-lg overflow-hidden shadow-2xl ${
           isClosing ? "modal-panel-exit" : "modal-panel-enter"
         }`}
       >
@@ -79,7 +79,7 @@ function ProjectModal({
             ))}
           </div>
 
-          <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-accent-500 uppercase">
+          <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase dark:text-neutral-400">
             {project.status}
           </p>
 
@@ -130,7 +130,7 @@ export function Projects() {
                   <div className="project-preview mb-5 flex h-40 items-center justify-center">
                     <ArrowUpRight
                       size={28}
-                      className="text-accent-300 transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent-400 dark:text-accent-700 dark:group-hover:text-accent-500"
+                      className="text-neutral-300 transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-neutral-500 dark:text-neutral-700 dark:group-hover:text-neutral-400"
                     />
                   </div>
 
@@ -148,7 +148,7 @@ export function Projects() {
                   <p className="mb-3 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                     {project.description}
                   </p>
-                  <p className="mb-4 text-xs font-medium text-accent-600 dark:text-accent-400">
+                  <p className="mb-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">
                     {project.status}
                   </p>
 
@@ -166,7 +166,7 @@ export function Projects() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 transition-all duration-400 hover:text-accent-500 dark:text-accent-400 dark:hover:text-accent-300"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-600 transition-all duration-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                         aria-label={`View live demo of ${project.title}`}
                       >
                         <ExternalLink size={14} />
