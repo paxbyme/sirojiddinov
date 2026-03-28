@@ -14,17 +14,15 @@ export function Hero() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal delay={0} threshold={0.1}>
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-purple-300/40 bg-purple-50/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-purple-500/25 dark:bg-purple-900/20 dark:text-neutral-400">
+            <div className="hero-badge mb-8 inline-flex items-center gap-2.5 rounded-full border px-5 py-2 text-sm shadow-sm backdrop-blur-md">
               <span className="status-dot" />
               {profile.title}
             </div>
           </Reveal>
 
           <Reveal delay={100} threshold={0.1}>
-            <h1 className="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="text-neutral-900 dark:text-neutral-50">
-                Hi, I'm{" "}
-              </span>
+            <h1 className="hero-title text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              <span className="text-neutral-900 dark:text-neutral-50">Hi, I'm </span>
               <span className="gradient-text">{profile.heroTagline}</span>
             </h1>
           </Reveal>

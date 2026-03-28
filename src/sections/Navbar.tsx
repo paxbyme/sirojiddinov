@@ -29,29 +29,23 @@ export function Navbar() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-purple-200/30 bg-white/60 shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:border-purple-500/15 dark:bg-[#050012]/80 dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
+          ? "navbar-scrolled border-b shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
           : "bg-transparent"
       }`}
     >
       <Container>
         <nav className="flex h-18 items-center justify-between" aria-label="Main navigation">
-          <a
-            href="#"
-            className="text-xl font-bold tracking-tight"
-          >
+          <a href="#" className="brand-text text-xl font-bold tracking-tight">
             <span className="gradient-text">{profile.name}</span>
           </a>
 
-          {/* Desktop nav */}
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
               <a
@@ -67,12 +61,11 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Mobile toggle */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="aurora-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="theme-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -82,24 +75,14 @@ export function Navbar() {
         </nav>
       </Container>
 
-      {/* Mobile slide-over */}
-      <div
-        className={`fixed inset-0 z-40 md:hidden ${
-          mobileOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-      >
+      <div className={`fixed inset-0 z-40 md:hidden ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
         <div
-          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 dark:bg-black/40 ${
-            mobileOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 dark:bg-black/40 ${mobileOpen ? "opacity-100" : "opacity-0"}`}
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />
-
         <div
-          className={`absolute top-0 right-0 h-full w-72 border-l border-purple-200/30 bg-white/80 p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-purple-500/15 dark:bg-[#050012]/90 ${
-            mobileOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`theme-card absolute top-0 right-0 h-full w-72 rounded-none border-l p-6 pt-24 shadow-2xl transition-transform duration-500 ease-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
