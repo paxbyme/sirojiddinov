@@ -21,26 +21,16 @@ function ProjectModal({
 
   useEffect(() => {
     if (!isClosing) return;
-    const timer = window.setTimeout(() => {
-      onClose();
-    }, 250);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
+    const timer = window.setTimeout(() => onClose(), 300);
+    return () => window.clearTimeout(timer);
   }, [isClosing, onClose]);
 
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsClosing(true);
-      }
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsClosing(true);
     };
-
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-    };
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
   return (
@@ -51,7 +41,7 @@ function ProjectModal({
       aria-label={`Details for ${project.title}`}
     >
       <div
-        className={`absolute inset-0 bg-black/40 backdrop-blur-md dark:bg-black/60 ${
+        className={`absolute inset-0 bg-black/30 backdrop-blur-lg dark:bg-black/50 ${
           isClosing ? "modal-backdrop-exit" : "modal-backdrop-enter"
         }`}
         onClick={() => setIsClosing(true)}
@@ -59,44 +49,41 @@ function ProjectModal({
       />
 
       <div
-        className={`glass-surface relative w-full max-w-lg overflow-hidden shadow-2xl ${
+        className={`glass-card relative w-full max-w-lg overflow-hidden shadow-2xl ${
           isClosing ? "modal-panel-exit" : "modal-panel-enter"
         }`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-neutral-200/60 px-6 py-4 dark:border-neutral-800/60">
+        <div className="flex items-center justify-between border-b border-neutral-200/40 px-7 py-5 dark:border-neutral-800/40">
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
             {project.title}
           </h3>
           <button
             onClick={() => setIsClosing(true)}
-            className="rounded-lg p-1.5 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+            className="rounded-xl p-1.5 text-neutral-400 transition-all duration-300 hover:bg-neutral-100/80 hover:text-neutral-700 dark:hover:bg-neutral-800/80 dark:hover:text-neutral-200"
             aria-label="Close dialog"
           >
             <X size={18} />
           </button>
         </div>
 
-        <div className="p-6">
-          <div className="mb-4 flex flex-wrap items-start justify-between gap-2">
-            {project.productionReady && (
+        <div className="p-7">
+          {project.productionReady && (
+            <div className="mb-4">
               <Tag variant="accent">{t.projectProductionReady}</Tag>
-            )}
-          </div>
+            </div>
+          )}
 
-          <div className="mb-4 flex flex-wrap gap-1.5">
+          <div className="mb-4 flex flex-wrap gap-2">
             {project.stack.map((tech) => (
-              <Tag key={tech} variant="accent">
-                {tech}
-              </Tag>
+              <Tag key={tech} variant="accent">{tech}</Tag>
             ))}
           </div>
 
-          <p className="mb-2 text-xs font-semibold tracking-widest text-accent-500 uppercase">
+          <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-accent-500 uppercase">
             {project.status}
           </p>
 
-          <p className="mb-6 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+          <p className="mb-7 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
             {project.longDescription}
           </p>
 
@@ -125,32 +112,29 @@ export function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-28">
       <Container>
-        <div className="section-divider mb-24" />
+        <div className="section-fade mb-28" />
 
-        <SectionTitle
-          title={t.projectsTitle}
-          subtitle={t.projectsSubtitle}
-        />
+        <SectionTitle title={t.projectsTitle} subtitle={t.projectsSubtitle} />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {profile.projects.map((project, index) => (
-            <Reveal key={project.id} delay={80 + index * 90}>
+            <Reveal key={project.id} delay={60 + index * 100}>
               <Card hover>
                 <button
                   onClick={() => setSelected(project)}
-                  className="w-full text-left"
+                  className="group w-full text-left"
                   aria-label={`View details for ${project.title}`}
                 >
-                  <div className="project-preview mb-5 flex h-36 items-center justify-center">
+                  <div className="project-preview mb-5 flex h-40 items-center justify-center">
                     <ArrowUpRight
-                      size={32}
-                      className="text-accent-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 dark:text-accent-600"
+                      size={28}
+                      className="text-accent-300 transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent-400 dark:text-accent-700 dark:group-hover:text-accent-500"
                     />
                   </div>
 
-                  <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+                  <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
                     <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                       {project.title}
                     </h3>
@@ -168,7 +152,7 @@ export function Projects() {
                     {project.status}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
                       <Tag key={tech}>{tech}</Tag>
                     ))}
@@ -176,13 +160,13 @@ export function Projects() {
                 </button>
 
                 {(project.liveUrl || project.githubUrl) && (
-                  <div className="mt-5 flex gap-3 border-t border-neutral-200/60 pt-4 dark:border-neutral-800/60">
+                  <div className="mt-5 flex gap-4 border-t border-neutral-200/40 pt-5 dark:border-neutral-800/40">
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 transition-colors hover:text-accent-500 dark:text-accent-400 dark:hover:text-accent-300"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 transition-all duration-400 hover:text-accent-500 dark:text-accent-400 dark:hover:text-accent-300"
                         aria-label={`View live demo of ${project.title}`}
                       >
                         <ExternalLink size={14} />
@@ -194,7 +178,7 @@ export function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 transition-all duration-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                         aria-label={`View source code of ${project.title}`}
                       >
                         <Github size={14} />

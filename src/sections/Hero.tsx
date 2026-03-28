@@ -7,21 +7,21 @@ import { useTypingEffect } from "../hooks/useTypingEffect";
 
 export function Hero() {
   const { t, profile } = useTranslation();
-  const { displayText, isComplete } = useTypingEffect(profile.heroDescription, 30, 600);
+  const { displayText, isComplete } = useTypingEffect(profile.heroDescription, 25, 800);
 
   return (
     <section className="flex min-h-[100dvh] items-center pt-16" aria-label="Introduction">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal delay={40} threshold={0.1}>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/60 px-4 py-1.5 text-sm text-neutral-600 backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800/60 dark:text-neutral-400">
+          <Reveal delay={0} threshold={0.1}>
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200/60 bg-white/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-neutral-700/60 dark:bg-neutral-800/50 dark:text-neutral-400">
               <span className="status-dot" />
               {profile.title}
             </div>
           </Reveal>
 
-          <Reveal delay={120} threshold={0.1}>
-            <h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+          <Reveal delay={100} threshold={0.1}>
+            <h1 className="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="text-neutral-900 dark:text-neutral-50">
                 Hi, I'm{" "}
               </span>
@@ -30,16 +30,16 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={200} threshold={0.1}>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-500 dark:text-neutral-400">
+            <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-neutral-500 dark:text-neutral-400">
               {displayText}
               {!isComplete && (
-                <span className="ml-0.5 inline-block h-5 w-0.5 animate-pulse bg-accent-500" />
+                <span className="ml-0.5 inline-block h-5 w-[2px] animate-pulse rounded-full bg-accent-400" />
               )}
             </p>
           </Reveal>
 
-          <Reveal delay={280} threshold={0.1}>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Reveal delay={320} threshold={0.1}>
+            <div className="mt-12 flex flex-wrap justify-center gap-4">
               <Button href="#projects" variant="primary" size="lg">
                 <ArrowDown size={18} />
                 {t.heroViewProjects}
@@ -50,12 +50,6 @@ export function Hero() {
               </Button>
             </div>
           </Reveal>
-
-          {/* Decorative floating orbs */}
-          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-            <div className="motion-float absolute top-1/4 left-[10%] h-72 w-72 rounded-full bg-accent-400/10 blur-3xl" />
-            <div className="motion-float absolute right-[10%] bottom-1/4 h-64 w-64 rounded-full bg-purple-400/10 blur-3xl" style={{ animationDelay: "-3s" }} />
-          </div>
         </div>
       </Container>
     </section>

@@ -8,35 +8,31 @@ export function Experience() {
   const { t, profile } = useTranslation();
 
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="py-28">
       <Container>
-        <div className="section-divider mb-24" />
+        <div className="section-fade mb-28" />
 
-        <SectionTitle
-          title={t.experienceTitle}
-          subtitle={t.experienceSubtitle}
-        />
+        <SectionTitle title={t.experienceTitle} subtitle={t.experienceSubtitle} />
 
         <div className="relative mx-auto max-w-2xl">
-          {/* Timeline line */}
-          <div className="absolute top-0 left-5 h-full w-px bg-gradient-to-b from-accent-400/40 via-accent-500/20 to-transparent sm:left-7" />
+          {/* Timeline line — smooth gradient */}
+          <div className="absolute top-0 left-5 h-full w-[2px] rounded-full bg-gradient-to-b from-accent-400/50 via-warm-400/30 to-transparent sm:left-7" />
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {profile.experience.map((item, index) => (
-              <Reveal key={item.id} delay={90 + index * 90}>
-                <div className="glass-surface relative rounded-2xl p-5 pl-14 sm:pl-18">
+              <Reveal key={item.id} delay={80 + index * 100}>
+                <div className="glass-card relative p-6 pl-16 sm:pl-20">
                   {/* Icon */}
-                  <div className="absolute top-5 left-1 flex h-9 w-9 items-center justify-center rounded-xl bg-accent-50 text-accent-600 sm:left-3 dark:bg-accent-500/10 dark:text-accent-400">
+                  <div className="absolute top-6 left-1 flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-100 to-warm-100 text-accent-600 shadow-sm sm:left-3 dark:from-accent-500/15 dark:to-warm-500/10 dark:text-accent-400">
                     {item.type === "work" ? (
-                      <Briefcase size={16} />
+                      <Briefcase size={17} />
                     ) : (
-                      <GraduationCap size={16} />
+                      <GraduationCap size={17} />
                     )}
                   </div>
 
-                  {/* Content */}
                   <div>
-                    <div className="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <div className="mb-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                       <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                         {item.role}
                       </h3>
@@ -45,17 +41,17 @@ export function Experience() {
                       </span>
                     </div>
 
-                    <p className="mb-3 text-xs font-medium text-neutral-400 dark:text-neutral-500">
+                    <p className="mb-4 text-xs font-medium text-neutral-400 dark:text-neutral-500">
                       {item.startDate} — {item.endDate} &middot; {item.location}
                     </p>
 
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {item.description.map((desc, i) => (
                         <li
                           key={i}
-                          className="flex gap-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300"
+                          className="flex gap-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300"
                         >
-                          <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent-400" />
+                          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-accent-400 to-warm-400" />
                           {desc}
                         </li>
                       ))}
