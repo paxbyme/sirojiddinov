@@ -23,7 +23,7 @@ export function Skills() {
               className={index === 0 ? "bento-wide" : ""}
             >
               <Card hover className="h-full">
-                <p className="mb-5 text-xs font-semibold tracking-[0.2em] text-accent-500 uppercase dark:text-accent-400">
+                <p className="mb-5 text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase dark:text-neutral-400">
                   {category.title}
                 </p>
                 <div className="flex flex-wrap gap-2.5">
