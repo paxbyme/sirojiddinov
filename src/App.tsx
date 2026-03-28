@@ -12,9 +12,9 @@ export default function App() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
       <div className="app-backdrop" aria-hidden="true">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
+        <div className="aurora-glow-1" />
+        <div className="aurora-glow-2" />
+        <div className="aurora-glow-3" />
         <div className="grain" />
       </div>
 

@@ -14,7 +14,7 @@ export function Hero() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal delay={0} threshold={0.1}>
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200/60 bg-white/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-neutral-700/60 dark:bg-neutral-800/50 dark:text-neutral-400">
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-purple-300/40 bg-purple-50/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-purple-500/25 dark:bg-purple-900/20 dark:text-neutral-400">
               <span className="status-dot" />
               {profile.title}
             </div>

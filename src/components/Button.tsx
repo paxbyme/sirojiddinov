@@ -18,9 +18,9 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-[0_4px_20px_rgb(168_85_247_/_25%)] hover:shadow-[0_8px_32px_rgb(168_85_247_/_35%)] hover:scale-[1.02] active:scale-[0.98] dark:from-accent-500 dark:to-accent-400",
+      "bg-gradient-to-r from-purple-600 to-blue-500 text-white shadow-[0_4px_20px_rgb(147_51_234_/_30%)] hover:shadow-[0_8px_32px_rgb(147_51_234_/_40%)] hover:scale-[1.02] active:scale-[0.98]",
     secondary:
-      "border border-neutral-200/80 bg-white/60 text-neutral-700 backdrop-blur-sm hover:border-accent-300 hover:bg-white/80 hover:scale-[1.02] active:scale-[0.98] dark:border-neutral-700/80 dark:bg-neutral-800/60 dark:text-neutral-300 dark:hover:border-accent-500/40",
+      "border border-purple-500/30 bg-white/60 text-neutral-700 backdrop-blur-sm hover:border-purple-400 hover:bg-white/80 hover:scale-[1.02] active:scale-[0.98] dark:border-purple-500/30 dark:bg-neutral-800/60 dark:text-neutral-300 dark:hover:border-purple-400",
     ghost:
       "text-neutral-600 hover:bg-neutral-100/80 hover:text-neutral-900 active:scale-[0.98] dark:text-neutral-400 dark:hover:bg-neutral-800/80 dark:hover:text-white",
   };

@@ -99,7 +99,7 @@ export function Contact() {
           <Reveal delay={60}>
             <Card>
               {submitted ? (
-                <div className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-accent-50/50 to-warm-50/50 p-12 text-center dark:from-accent-500/5 dark:to-warm-500/5">
+                <div className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-accent-50/50 to-blue-50/50 p-12 text-center dark:from-accent-500/5 dark:to-blue-500/5">
                   <CheckCircle size={48} className="mb-5 text-accent-500" />
                   <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
                     {t.contactSuccess}
