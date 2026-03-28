@@ -16,14 +16,14 @@ export function Experience() {
 
         <div className="relative mx-auto max-w-2xl">
           {/* Timeline line — smooth gradient */}
-          <div className="absolute top-0 left-5 h-full w-[2px] rounded-full bg-black/10 sm:left-7 dark:bg-white/20" />
+          <div className="absolute top-0 left-5 h-full w-[2px] rounded-full bg-gradient-to-b from-purple-500/50 via-blue-400/30 to-transparent sm:left-7" />
 
           <div className="flex flex-col gap-10">
             {profile.experience.map((item, index) => (
               <Reveal key={item.id} delay={80 + index * 100}>
-                <div className="onyx-card relative p-6 pl-16 sm:pl-20">
+                <div className="aurora-card relative p-6 pl-16 sm:pl-20">
                   {/* Icon */}
-                  <div className="absolute top-6 left-1 flex h-10 w-10 items-center justify-center rounded-2xl bg-neutral-100 text-neutral-600 sm:left-3 dark:bg-white/10 dark:text-neutral-300">
+                  <div className="absolute top-6 left-1 flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-100 to-blue-100 text-accent-600 shadow-sm sm:left-3 dark:from-purple-500/15 dark:to-blue-500/10 dark:text-accent-400">
                     {item.type === "work" ? (
                       <Briefcase size={17} />
                     ) : (
@@ -51,7 +51,7 @@ export function Experience() {
                           key={i}
                           className="flex gap-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300"
                         >
-                          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-600" />
+                          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-purple-400 to-blue-400" />
                           {desc}
                         </li>
                       ))}

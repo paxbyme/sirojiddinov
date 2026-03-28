@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
   return (
     <div ref={ref} className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="onyx-card mb-2 p-1.5 shadow-xl">
+        <div className="aurora-card mb-2 p-1.5 shadow-xl">
           {localeOptions.map((opt) => (
             <button
               key={opt.code}
@@ -39,7 +39,7 @@ export function LanguageSwitcher() {
               }}
               className={`flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm transition-all duration-300 ${
                 locale === opt.code
-                  ? "bg-neutral-200/60 font-medium text-neutral-900 dark:bg-neutral-800/60 dark:text-white"
+                  ? "bg-accent-500/12 font-medium text-accent-700 dark:text-accent-400"
                   : "text-neutral-600 hover:bg-neutral-100/80 dark:text-neutral-300 dark:hover:bg-neutral-800/80"
               }`}
             >
@@ -51,10 +51,10 @@ export function LanguageSwitcher() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="onyx-card flex items-center gap-2 px-4 py-3 text-sm font-medium text-neutral-600 shadow-lg transition-all duration-500 hover:scale-[1.03] dark:text-neutral-400"
+        className="aurora-card flex items-center gap-2 px-4 py-3 text-sm font-medium text-neutral-600 shadow-lg transition-all duration-500 hover:scale-[1.03] dark:text-neutral-400"
         aria-label="Change language"
       >
-        <Globe size={16} className="text-neutral-500 dark:text-neutral-400" />
+        <Globe size={16} className="text-accent-500 dark:text-accent-400" />
         <span className="uppercase">{locale}</span>
       </button>
     </div>

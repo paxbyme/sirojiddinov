@@ -11,7 +11,12 @@ import { LanguageSwitcher } from "./components/LanguageSwitcher";
 export default function App() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
-      <div className="app-backdrop" aria-hidden="true" />
+      <div className="app-backdrop" aria-hidden="true">
+        <div className="aurora-glow-1" />
+        <div className="aurora-glow-2" />
+        <div className="aurora-glow-3" />
+        <div className="grain" />
+      </div>
 
       <div className="relative z-10">
         <Navbar />

@@ -17,7 +17,7 @@ export function About() {
           {/* Bio — wide + tall */}
           <Reveal delay={60} className="bento-wide bento-tall">
             <Card className="flex h-full flex-col justify-center">
-              <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase dark:text-neutral-400">
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-accent-500 uppercase">
                 Bio
               </p>
               <p className="text-lg leading-[1.8] text-neutral-600 dark:text-neutral-300">
@@ -30,7 +30,7 @@ export function About() {
           {profile.highlights.map((highlight, index) => (
             <Reveal key={highlight.title} delay={150 + index * 100}>
               <Card hover className="h-full">
-                <div className="mb-5 inline-flex rounded-2xl bg-neutral-100 p-3.5 text-neutral-600 dark:bg-white/10 dark:text-neutral-300">
+                <div className="mb-5 inline-flex rounded-2xl bg-gradient-to-br from-purple-100 to-blue-100 p-3.5 text-accent-600 dark:from-purple-500/15 dark:to-blue-500/10 dark:text-accent-400">
                   <Icon name={highlight.icon} size={22} />
                 </div>
                 <h3 className="mb-2 text-base font-semibold text-neutral-900 dark:text-neutral-50">

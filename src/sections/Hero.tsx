@@ -14,15 +14,18 @@ export function Hero() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal delay={0} threshold={0.1}>
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200 bg-transparent px-5 py-2 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-400">
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-purple-300/40 bg-purple-50/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-purple-500/25 dark:bg-purple-900/20 dark:text-neutral-400">
               <span className="status-dot" />
               {profile.title}
             </div>
           </Reveal>
 
           <Reveal delay={100} threshold={0.1}>
-            <h1 className="mono-heading text-5xl leading-[1.08] font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-6xl lg:text-7xl">
-              Hi, I'm {profile.heroTagline}
+            <h1 className="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              <span className="text-neutral-900 dark:text-neutral-50">
+                Hi, I'm{" "}
+              </span>
+              <span className="gradient-text">{profile.heroTagline}</span>
             </h1>
           </Reveal>
 
@@ -30,7 +33,7 @@ export function Hero() {
             <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-neutral-500 dark:text-neutral-400">
               {displayText}
               {!isComplete && (
-                <span className="ml-0.5 inline-block h-5 w-[2px] animate-pulse rounded-full bg-neutral-400" />
+                <span className="ml-0.5 inline-block h-5 w-[2px] animate-pulse rounded-full bg-accent-400" />
               )}
             </p>
           </Reveal>

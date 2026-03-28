@@ -38,7 +38,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-neutral-200/40 bg-white/80 backdrop-blur-2xl dark:border-neutral-800/40 dark:bg-black/80"
+          ? "border-b border-purple-200/30 bg-white/60 shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:border-purple-500/15 dark:bg-[#050012]/80 dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
           : "bg-transparent"
       }`}
     >
@@ -48,7 +48,7 @@ export function Navbar() {
             href="#"
             className="text-xl font-bold tracking-tight"
           >
-            <span className="text-neutral-900 dark:text-white">{profile.name}</span>
+            <span className="gradient-text">{profile.name}</span>
           </a>
 
           {/* Desktop nav */}
@@ -72,7 +72,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="onyx-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="aurora-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -97,7 +97,7 @@ export function Navbar() {
         />
 
         <div
-          className={`absolute top-0 right-0 h-full w-72 border-l border-neutral-200/40 bg-white/80 p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-neutral-800/40 dark:bg-neutral-950/80 ${
+          className={`absolute top-0 right-0 h-full w-72 border-l border-purple-200/30 bg-white/80 p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-purple-500/15 dark:bg-[#050012]/90 ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

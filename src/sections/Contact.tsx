@@ -85,7 +85,7 @@ export function Contact() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white/50 px-5 py-3.5 text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-500 focus:border-neutral-400 focus:ring-4 focus:ring-neutral-200/50 focus:outline-none dark:bg-neutral-900/50 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-neutral-500 dark:focus:ring-neutral-800/50";
+    "w-full rounded-2xl border bg-white/50 px-5 py-3.5 text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-500 focus:border-accent-300 focus:ring-4 focus:ring-accent-100/50 focus:outline-none dark:bg-neutral-900/50 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:border-accent-500/50 dark:focus:ring-accent-500/10";
 
   return (
     <section id="contact" className="py-28">
@@ -99,8 +99,8 @@ export function Contact() {
           <Reveal delay={60}>
             <Card>
               {submitted ? (
-                <div className="flex flex-col items-center justify-center rounded-2xl bg-neutral-100/50 p-12 text-center dark:bg-white/5">
-                  <CheckCircle size={48} className="mb-5 text-neutral-500 dark:text-white" />
+                <div className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-accent-50/50 to-blue-50/50 p-12 text-center dark:from-accent-500/5 dark:to-blue-500/5">
+                  <CheckCircle size={48} className="mb-5 text-accent-500" />
                   <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
                     {t.contactSuccess}
                   </h3>
@@ -221,13 +221,13 @@ export function Contact() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3.5 rounded-2xl border border-neutral-200/40 bg-white/30 p-4.5 text-neutral-600 transition-all duration-500 hover:border-neutral-400/50 hover:bg-neutral-100/30 hover:text-neutral-900 dark:border-neutral-800/40 dark:bg-neutral-900/30 dark:text-neutral-300 dark:hover:border-neutral-600/50 dark:hover:bg-white/5 dark:hover:text-white"
+                      className="flex items-center gap-3.5 rounded-2xl border border-neutral-200/40 bg-white/30 p-4.5 text-neutral-600 transition-all duration-500 hover:border-accent-300/50 hover:bg-accent-50/30 hover:text-accent-700 dark:border-neutral-800/40 dark:bg-neutral-900/30 dark:text-neutral-300 dark:hover:border-accent-500/25 dark:hover:bg-accent-500/5 dark:hover:text-accent-400"
                       aria-label={`Visit ${link.platform} profile`}
                     >
                       <Icon
                         name={link.icon}
                         size={20}
-                        className="text-neutral-500 dark:text-neutral-400"
+                        className="text-accent-500 dark:text-accent-400"
                       />
                       <span className="text-sm font-medium">{link.platform}</span>
                     </a>
