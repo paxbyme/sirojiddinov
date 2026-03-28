@@ -9,7 +9,7 @@ export function Footer() {
       <Container>
         <div className="section-fade mb-8" />
         <p className="text-center text-sm text-neutral-400 dark:text-neutral-500">
-          &copy; {new Date().getFullYear()} <span className="gradient-text font-medium">{profile.name}</span>. {t.footerBuiltWith}
+          &copy; {new Date().getFullYear()} <span className="gradient-text font-serif font-medium">{profile.name}</span>. {t.footerBuiltWith}
         </p>
       </Container>
     </footer>

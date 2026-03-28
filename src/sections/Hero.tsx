@@ -14,15 +14,15 @@ export function Hero() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal delay={0} threshold={0.1}>
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200/60 bg-white/50 px-5 py-2 text-sm text-neutral-600 shadow-sm backdrop-blur-md dark:border-neutral-700/60 dark:bg-neutral-800/50 dark:text-neutral-400">
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-accent-600/12 bg-accent-50/50 px-5 py-2 text-sm text-accent-800 shadow-sm backdrop-blur-md dark:border-accent-400/15 dark:bg-accent-900/30 dark:text-accent-300">
               <span className="status-dot" />
               {profile.title}
             </div>
           </Reveal>
 
           <Reveal delay={100} threshold={0.1}>
-            <h1 className="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="text-neutral-900 dark:text-neutral-50">
+            <h1 className="font-serif text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              <span className="text-[#3d3529] dark:text-[#e8e0d4]">
                 Hi, I'm{" "}
               </span>
               <span className="gradient-text">{profile.heroTagline}</span>

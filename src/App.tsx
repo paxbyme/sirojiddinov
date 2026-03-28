@@ -12,9 +12,8 @@ export default function App() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
       <div className="app-backdrop" aria-hidden="true">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
+        <div className="warmth-1" />
+        <div className="warmth-2" />
         <div className="grain" />
       </div>
 

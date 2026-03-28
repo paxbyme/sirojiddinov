@@ -7,8 +7,8 @@ interface CardProps {
 export function Card({ children, className = "", hover = false }: CardProps) {
   return (
     <div
-      className={`glass-card overflow-hidden ${
-        hover ? "glass-card-hover glow-border cursor-pointer" : ""
+      className={`creme-card overflow-hidden ${
+        hover ? "creme-card-hover cursor-pointer" : ""
       } ${className}`}
     >
       <div className="p-7">{children}</div>

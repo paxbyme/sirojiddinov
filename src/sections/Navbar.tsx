@@ -38,7 +38,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-neutral-200/40 bg-white/60 shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:border-neutral-800/40 dark:bg-neutral-950/60 dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
+          ? "border-b border-accent-600/8 bg-[rgb(245_240_234_/_80%)] shadow-[0_4px_32px_rgb(146_112_79_/_3%)] backdrop-blur-2xl dark:border-accent-400/8 dark:bg-[rgb(26_23_19_/_80%)] dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
           : "bg-transparent"
       }`}
     >
@@ -46,7 +46,7 @@ export function Navbar() {
         <nav className="flex h-18 items-center justify-between" aria-label="Main navigation">
           <a
             href="#"
-            className="text-xl font-bold tracking-tight"
+            className="font-serif text-xl font-bold tracking-tight"
           >
             <span className="gradient-text">{profile.name}</span>
           </a>
@@ -72,7 +72,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="glass-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="creme-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -97,7 +97,7 @@ export function Navbar() {
         />
 
         <div
-          className={`absolute top-0 right-0 h-full w-72 border-l border-neutral-200/40 bg-white/80 p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-neutral-800/40 dark:bg-neutral-950/80 ${
+          className={`absolute top-0 right-0 h-full w-72 border-l border-accent-600/8 bg-[rgb(245_240_234_/_90%)] p-6 pt-24 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out dark:border-accent-400/8 dark:bg-[rgb(26_23_19_/_90%)] ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

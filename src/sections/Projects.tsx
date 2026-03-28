@@ -49,7 +49,7 @@ function ProjectModal({
       />
 
       <div
-        className={`glass-card relative w-full max-w-lg overflow-hidden shadow-2xl ${
+        className={`creme-card relative w-full max-w-lg overflow-hidden shadow-2xl ${
           isClosing ? "modal-panel-exit" : "modal-panel-enter"
         }`}
       >

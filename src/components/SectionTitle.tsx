@@ -9,7 +9,7 @@ interface SectionTitleProps {
 export function SectionTitle({ title, subtitle }: SectionTitleProps) {
   return (
     <Reveal className="mb-16 text-center">
-      <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+      <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">
         <span className="gradient-text">{title}</span>
       </h2>
       {subtitle && (

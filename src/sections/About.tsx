@@ -30,7 +30,7 @@ export function About() {
           {profile.highlights.map((highlight, index) => (
             <Reveal key={highlight.title} delay={150 + index * 100}>
               <Card hover className="h-full">
-                <div className="mb-5 inline-flex rounded-2xl bg-gradient-to-br from-accent-100 to-warm-100 p-3.5 text-accent-600 dark:from-accent-500/15 dark:to-warm-500/10 dark:text-accent-400">
+                <div className="mb-5 inline-flex rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 p-3.5 text-accent-600 dark:from-accent-500/15 dark:to-accent-400/10 dark:text-accent-400">
                   <Icon name={highlight.icon} size={22} />
                 </div>
                 <h3 className="mb-2 text-base font-semibold text-neutral-900 dark:text-neutral-50">
