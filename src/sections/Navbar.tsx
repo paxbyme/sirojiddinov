@@ -38,7 +38,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-neutral-200/40 bg-white/60 shadow-[0_4px_32px_rgb(0_0_0_/_3%)] backdrop-blur-2xl dark:border-neutral-800/40 dark:bg-neutral-950/60 dark:shadow-[0_4px_32px_rgb(0_0_0_/_15%)]"
+          ? "border-b border-neutral-200/40 bg-white/80 backdrop-blur-2xl dark:border-neutral-800/40 dark:bg-black/80"
           : "bg-transparent"
       }`}
     >
@@ -48,7 +48,7 @@ export function Navbar() {
             href="#"
             className="text-xl font-bold tracking-tight"
           >
-            <span className="gradient-text">{profile.name}</span>
+            <span className="text-neutral-900 dark:text-white">{profile.name}</span>
           </a>
 
           {/* Desktop nav */}
@@ -72,7 +72,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="glass-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="onyx-card rounded-2xl p-2.5 text-neutral-500 transition-all duration-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >

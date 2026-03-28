@@ -14,13 +14,13 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl font-medium transition-all duration-500 ease-out";
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl font-medium transition-all duration-500 ease-out";
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-[0_4px_20px_rgb(168_85_247_/_25%)] hover:shadow-[0_8px_32px_rgb(168_85_247_/_35%)] hover:scale-[1.02] active:scale-[0.98] dark:from-accent-500 dark:to-accent-400",
+      "bg-black text-white hover:scale-[1.02] active:scale-[0.98] dark:bg-white dark:text-black",
     secondary:
-      "border border-neutral-200/80 bg-white/60 text-neutral-700 backdrop-blur-sm hover:border-accent-300 hover:bg-white/80 hover:scale-[1.02] active:scale-[0.98] dark:border-neutral-700/80 dark:bg-neutral-800/60 dark:text-neutral-300 dark:hover:border-accent-500/40",
+      "border border-black/15 bg-transparent text-neutral-700 hover:border-black/30 hover:scale-[1.02] active:scale-[0.98] dark:border-white/20 dark:text-neutral-300 dark:hover:border-white/40",
     ghost:
       "text-neutral-600 hover:bg-neutral-100/80 hover:text-neutral-900 active:scale-[0.98] dark:text-neutral-400 dark:hover:bg-neutral-800/80 dark:hover:text-white",
   };
