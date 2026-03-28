@@ -20,16 +20,14 @@ export function LanguageSwitcher() {
         setOpen(false);
       }
     }
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    if (open) document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
   return (
     <div ref={ref} className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="aurora-card mb-2 p-1.5 shadow-xl">
+        <div className="theme-card mb-2 p-1.5 shadow-xl">
           {localeOptions.map((opt) => (
             <button
               key={opt.code}
@@ -51,7 +49,7 @@ export function LanguageSwitcher() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="aurora-card flex items-center gap-2 px-4 py-3 text-sm font-medium text-neutral-600 shadow-lg transition-all duration-500 hover:scale-[1.03] dark:text-neutral-400"
+        className="theme-card flex items-center gap-2 px-4 py-3 text-sm font-medium shadow-lg transition-all duration-500 hover:scale-[1.03]"
         aria-label="Change language"
       >
         <Globe size={16} className="text-accent-500 dark:text-accent-400" />
