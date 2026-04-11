@@ -25,7 +25,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="terminal-surface rounded-lg p-2 text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-500/40 hover:text-accent-700 dark:text-neutral-400 dark:hover:border-accent-400/40 dark:hover:text-accent-400"
+      className="rounded-lg border border-neutral-200 bg-white p-2 text-neutral-600 transition-colors duration-200 hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-neutral-100"
       aria-label={dark ? t.themeSwitchToLight : t.themeSwitchToDark}
     >
       {dark ? <Sun size={20} /> : <Moon size={20} />}

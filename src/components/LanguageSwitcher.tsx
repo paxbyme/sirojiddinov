@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
   return (
     <div ref={ref} className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="terminal-surface mb-2 rounded-lg p-1 shadow-lg">
+        <div className="surface mb-2 rounded-lg p-1 shadow-lg shadow-neutral-900/10 dark:shadow-black/30">
           {localeOptions.map((opt) => (
             <button
               key={opt.code}
@@ -51,7 +51,7 @@ export function LanguageSwitcher() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="terminal-surface flex items-center gap-2 rounded-lg px-3 py-2.5 font-mono text-sm font-medium text-neutral-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-500/40 dark:text-neutral-300 dark:hover:border-accent-400/40"
+        className="surface flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-neutral-700 shadow-md shadow-neutral-900/8 transition-all duration-200 hover:-translate-y-0.5 dark:text-neutral-300"
         aria-label="Change language"
       >
         <Globe size={18} className="text-accent-600 dark:text-accent-400" />

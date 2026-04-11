@@ -36,21 +36,20 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-accent-500/25 bg-white/85 shadow-[0_8px_32px_rgb(16_185_129_/_12%),0_4px_16px_rgb(16_185_129_/_8%)] backdrop-blur-2xl dark:border-accent-500/20 dark:bg-neutral-950/85 dark:shadow-[0_8px_32px_rgb(16_185_129_/_15%),0_4px_16px_rgb(16_185_129_/_10%)]"
-          : "bg-transparent backdrop-blur-md"
+          ? "border-b border-neutral-200/80 bg-neutral-50/90 backdrop-blur-md dark:border-neutral-800/80 dark:bg-neutral-950/90"
+          : "bg-transparent"
       }`}
     >
       <Container>
         <nav className="flex h-16 items-center justify-between" aria-label="Main navigation">
           <a
             href="#"
-            className="font-mono text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
+            className="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50"
           >
-            <span className="text-accent-500 dark:text-accent-400">{"{"}</span>
-            <span>{profile.name}</span>
-            <span className="text-accent-500 dark:text-accent-400">{"}"}</span>
+            {profile.name}
+            <span className="text-accent-500">.</span>
           </a>
 
           {/* Desktop nav */}
@@ -59,13 +58,12 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="group relative overflow-hidden rounded-lg px-3 py-2 font-mono text-sm font-medium text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-accent-700 dark:text-neutral-400 dark:hover:text-accent-400"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-neutral-500 transition-colors duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
               >
-                <span className="relative z-10">{link.label}</span>
-                <span className="absolute inset-0 rounded-lg bg-gradient-to-br from-accent-500/10 to-accent-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-accent-500/12 dark:to-accent-600/8" />
+                {link.label}
               </a>
             ))}
-            <div className="ml-2">
+            <div className="ml-3">
               <ThemeToggle />
             </div>
           </div>
@@ -75,7 +73,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="terminal-surface rounded-lg p-2 text-neutral-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -100,7 +98,7 @@ export function Navbar() {
         />
 
         <div
-          className={`terminal-surface absolute top-0 right-0 h-full w-64 border-l border-accent-500/15 p-6 pt-20 shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute top-0 right-0 h-full w-64 border-l border-neutral-200 bg-neutral-50 p-6 pt-20 shadow-xl transition-transform duration-300 ease-out dark:border-neutral-800 dark:bg-neutral-950 ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -110,7 +108,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg px-4 py-3 font-mono text-base font-medium text-neutral-700 transition-all duration-200 hover:bg-accent-500/8 hover:text-accent-700 dark:text-neutral-300 dark:hover:bg-accent-500/8 dark:hover:text-accent-400"
+                className="rounded-lg px-4 py-3 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
               >
                 {link.label}
               </a>
