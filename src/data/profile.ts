@@ -221,6 +221,59 @@ export const localizedProfile: LocalizedProfile = {
       stack: ["Flutter", "Node.js", "Express", "Firestore"],
     },
     {
+      id: "ijtimoiy-yordamchi-ai-management",
+      title: {
+        en: "Ijtimoiy Yordamchi — AI Employee Management System",
+        ru: "Ijtimoiy Yordamchi — AI система управления сотрудниками",
+        uz: "Ijtimoiy Yordamchi — AI Xodimlarni Boshqarish Tizimi",
+      },
+      description: {
+        en: "Full-stack monorepo with a Spring Boot API, Next.js manager dashboard, and Flutter staff app powered by Gemini AI and Pinecone RAG.",
+        ru: "Full-stack монорепо: Spring Boot API, Next.js дашборд для менеджеров и Flutter-приложение для сотрудников на базе Gemini AI и Pinecone RAG.",
+        uz: "Spring Boot API, Next.js menejer paneli va Gemini AI + Pinecone RAG asosidagi Flutter xodimlar ilovasi bilan to'liq full-stack monorepo.",
+      },
+      longDescription: {
+        en: "Three-app monorepo: managers use the Next.js dashboard to manage staff, assign tasks, monitor KPIs, configure AI rules, and upload documents for RAG. Staff use the Flutter mobile app to chat with an AI assistant, complete tasks, and message their manager. Backend is Java 17 + Spring Boot 3.2 with Gemini AI for chat and embeddings, Pinecone for vector search, Firebase Auth with custom role claims, and Playwright E2E tests covering the full manager→staff lifecycle.",
+        ru: "Монорепо из трёх приложений: менеджеры управляют персоналом, задачами и KPI через Next.js дашборд, загружают документы для RAG. Сотрудники общаются с AI-ассистентом и выполняют задачи в Flutter-приложении. Backend — Java 17 + Spring Boot 3.2, Gemini AI для чата и эмбеддингов, Pinecone для векторного поиска, Firebase Auth с кастомными ролями и Playwright E2E тесты.",
+        uz: "Uch ilovali monorepo: menejerlar Next.js paneli orqali xodimlarni, vazifalarni va KPI'larni boshqaradi, RAG uchun hujjat yuklaydi. Xodimlar Flutter ilovasida AI yordamchi bilan chatda muloqot qiladi va vazifalarni bajaradi. Backend — Java 17 + Spring Boot 3.2, chat va embedding uchun Gemini AI, vektor qidirish uchun Pinecone, custom rollar bilan Firebase Auth va Playwright E2E testlar.",
+      },
+      status: {
+        en: "Production-ready monorepo.",
+        ru: "Монорепо, готовое к продакшену.",
+        uz: "Productionga tayyor monorepo.",
+      },
+      productionReady: true,
+      stack: ["Flutter", "Next.js", "Spring Boot", "Java", "Gemini AI", "Pinecone", "Firebase", "Playwright"],
+      githubUrl: "https://github.com/paxbyme/ijtimoiy-yordamchi",
+      featured: true,
+    },
+    {
+      id: "logitrack-fleet-bot",
+      title: {
+        en: "LogiTrack — Telegram Fleet Tracking Bot",
+        ru: "LogiTrack — Telegram-бот для отслеживания флота",
+        uz: "LogiTrack — Telegram Fleet Kuzatuv Boti",
+      },
+      description: {
+        en: "Automation bot that scrapes live shipment data from tteld.com and posts scheduled updates to Telegram groups.",
+        ru: "Бот-автоматизатор, скрейпящий данные о грузоперевозках с tteld.com и постящий обновления в Telegram-группы по расписанию.",
+        uz: "tteld.com'dan jonli yuklama ma'lumotlarini scrape qilib, Telegram guruhlariga jadval bo'yicha update'lar post qiladigan avtomatlashtirish boti.",
+      },
+      longDescription: {
+        en: "Built with Python, python-telegram-bot, and BeautifulSoup. Scrapes tteld.com with session cookie persistence across restarts, posts grouped track updates on a configurable interval, and includes admin commands for track/trailer management and force updates. SQLite stores tracks and settings. Deployable as a systemd service or via screen/tmux on any Linux VPS.",
+        ru: "Python, python-telegram-bot и BeautifulSoup. Скрейпит tteld.com с сохранением сессионных cookies, постит сгруппированные обновления по настраиваемому интервалу, включает admin-команды для управления треками и принудительного обновления. SQLite хранит данные. Деплоится как systemd-сервис на Linux VPS.",
+        uz: "Python, python-telegram-bot va BeautifulSoup bilan qurilgan. Session cookie'larni saqlagan holda tteld.com'dan scrape qiladi, sozlanadigan interval bo'yicha guruhlangan track update'larini post qiladi va admin commandlar bilan boshqariladi. SQLite ma'lumotlarni saqlaydi. Linux VPS'da systemd service sifatida deploy qilinadi.",
+      },
+      status: {
+        en: "Deployed on VPS.",
+        ru: "Развёрнут на VPS.",
+        uz: "VPS'da deploy qilingan.",
+      },
+      productionReady: true,
+      stack: ["Python", "python-telegram-bot", "SQLite", "BeautifulSoup"],
+      githubUrl: "https://github.com/paxbyme/logitrack",
+    },
+    {
       id: "pinsaver-telegram-bot",
       title: {
         en: "PinSaver — Pinterest Video Downloader Bot",
