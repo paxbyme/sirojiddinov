@@ -221,6 +221,32 @@ export const localizedProfile: LocalizedProfile = {
       stack: ["Flutter", "Node.js", "Express", "Firestore"],
     },
     {
+      id: "pinsaver-telegram-bot",
+      title: {
+        en: "PinSaver — Pinterest Video Downloader Bot",
+        ru: "PinSaver — Telegram-бот для скачивания видео с Pinterest",
+        uz: "PinSaver — Pinterest Video Yuklovchi Telegram Bot",
+      },
+      description: {
+        en: "Async Telegram bot that accepts any Pinterest URL and instantly delivers the highest-quality video.",
+        ru: "Асинхронный Telegram-бот, принимающий Pinterest-ссылки и мгновенно отправляющий видео в максимальном качестве.",
+        uz: "Har qanday Pinterest URL qabul qilib, eng yuqori sifatli videoni darhol yuboradigan async Telegram bot.",
+      },
+      longDescription: {
+        en: "Built with Python 3.11+, python-telegram-bot v21 (async), and yt-dlp. Handles all Pinterest URL formats including short links, selects best-quality MP4, enforces a 50 MB Telegram limit with a direct URL fallback, and manages temp files with automatic cleanup. Deployed via Procfile with environment-based config.",
+        ru: "Создан на Python 3.11+, python-telegram-bot v21 (async) и yt-dlp. Поддерживает все форматы Pinterest URL, включая короткие ссылки, выбирает лучшее качество MP4, обрабатывает лимит 50 МБ с fallback на прямую ссылку и управляет временными файлами с автоочисткой. Развёрнут через Procfile.",
+        uz: "Python 3.11+, python-telegram-bot v21 (async) va yt-dlp bilan qurilgan. Qisqa havolalar ham ichida barcha Pinterest URL formatlarini qo'llab-quvvatlaydi, eng yaxshi MP4 sifatini tanlaydi, 50 MB Telegram limitini to'g'ridan-to'g'ri URL fallback bilan boshqaradi. Procfile orqali deploy qilingan.",
+      },
+      status: {
+        en: "Deployed and running.",
+        ru: "Развёрнут и работает.",
+        uz: "Deploy qilingan va ishlayapti.",
+      },
+      productionReady: true,
+      stack: ["Python", "python-telegram-bot", "yt-dlp", "asyncio"],
+      githubUrl: "https://github.com/paxbyme/pinsaver",
+    },
+    {
       id: "visago-ai-visa-platform",
       title: {
         en: "Ketdik.org — AI Visa Platform",
