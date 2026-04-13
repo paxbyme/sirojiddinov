@@ -7,8 +7,13 @@ import { Experience } from "./sections/Experience";
 import { Contact } from "./sections/Contact";
 import { Footer } from "./sections/Footer";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
+import { CV } from "./pages/CV";
 
 export default function App() {
+  if (window.location.pathname === "/cv") {
+    return <CV />;
+  }
+
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
       <div className="relative z-10">
